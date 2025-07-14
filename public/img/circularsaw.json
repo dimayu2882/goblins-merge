@@ -1,0 +1,751 @@
+{"frames": {
+
+"CircularSawMining_0001.png":
+{
+	"frame": {"x":1586,"y":118,"w":133,"h":118},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":85,"y":67,"w":133,"h":118},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0002.png":
+{
+	"frame": {"x":1721,"y":118,"w":133,"h":118},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":85,"y":67,"w":133,"h":118},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0003.png":
+{
+	"frame": {"x":1856,"y":118,"w":133,"h":118},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":85,"y":67,"w":133,"h":118},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0004.png":
+{
+	"frame": {"x":1,"y":231,"w":133,"h":118},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":85,"y":67,"w":133,"h":118},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0005.png":
+{
+	"frame": {"x":136,"y":233,"w":134,"h":118},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":84,"y":67,"w":134,"h":118},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0006.png":
+{
+	"frame": {"x":875,"y":117,"w":136,"h":117},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":82,"y":68,"w":136,"h":117},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0007.png":
+{
+	"frame": {"x":1205,"y":1,"w":137,"h":115},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":80,"y":70,"w":137,"h":115},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0008.png":
+{
+	"frame": {"x":1344,"y":1,"w":137,"h":115},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":78,"y":70,"w":137,"h":115},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0009.png":
+{
+	"frame": {"x":1483,"y":1,"w":136,"h":115},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":79,"y":70,"w":136,"h":115},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0010.png":
+{
+	"frame": {"x":1621,"y":1,"w":135,"h":115},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":81,"y":70,"w":135,"h":115},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0011.png":
+{
+	"frame": {"x":1758,"y":1,"w":133,"h":115},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":83,"y":70,"w":133,"h":115},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0012.png":
+{
+	"frame": {"x":479,"y":1,"w":132,"h":114},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":85,"y":71,"w":132,"h":114},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0013.png":
+{
+	"frame": {"x":613,"y":1,"w":131,"h":114},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":88,"y":71,"w":131,"h":114},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0014.png":
+{
+	"frame": {"x":1893,"y":1,"w":130,"h":115},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":91,"y":70,"w":130,"h":115},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0015.png":
+{
+	"frame": {"x":1013,"y":117,"w":132,"h":117},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":94,"y":68,"w":132,"h":117},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0016.png":
+{
+	"frame": {"x":272,"y":233,"w":137,"h":118},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":94,"y":67,"w":137,"h":118},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0017.png":
+{
+	"frame": {"x":1147,"y":118,"w":143,"h":117},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":93,"y":68,"w":143,"h":117},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0018.png":
+{
+	"frame": {"x":1,"y":114,"w":147,"h":115},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":90,"y":70,"w":147,"h":115},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0019.png":
+{
+	"frame": {"x":164,"y":1,"w":154,"h":113},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":86,"y":72,"w":154,"h":113},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0020.png":
+{
+	"frame": {"x":320,"y":1,"w":157,"h":113},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":85,"y":72,"w":157,"h":113},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0021.png":
+{
+	"frame": {"x":582,"y":117,"w":153,"h":116},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":89,"y":69,"w":153,"h":116},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0022.png":
+{
+	"frame": {"x":1763,"y":238,"w":148,"h":121},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":94,"y":64,"w":148,"h":121},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0023.png":
+{
+	"frame": {"x":722,"y":356,"w":146,"h":124},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":96,"y":61,"w":146,"h":124},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0024.png":
+{
+	"frame": {"x":1920,"y":361,"w":147,"h":125},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":98,"y":60,"w":147,"h":125},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0025.png":
+{
+	"frame": {"x":1352,"y":612,"w":146,"h":126},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":99,"y":59,"w":146,"h":126},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0026.png":
+{
+	"frame": {"x":1053,"y":484,"w":148,"h":125},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":97,"y":60,"w":148,"h":125},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0027.png":
+{
+	"frame": {"x":1203,"y":484,"w":147,"h":125},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":96,"y":60,"w":147,"h":125},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0028.png":
+{
+	"frame": {"x":1500,"y":614,"w":147,"h":126},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":99,"y":59,"w":147,"h":126},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0029.png":
+{
+	"frame": {"x":870,"y":357,"w":149,"h":124},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":96,"y":61,"w":149,"h":124},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0030.png":
+{
+	"frame": {"x":1352,"y":485,"w":148,"h":125},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":98,"y":60,"w":148,"h":125},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0031.png":
+{
+	"frame": {"x":1502,"y":487,"w":149,"h":125},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":98,"y":60,"w":149,"h":125},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0032.png":
+{
+	"frame": {"x":1649,"y":614,"w":148,"h":126},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":98,"y":59,"w":148,"h":126},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0033.png":
+{
+	"frame": {"x":1799,"y":637,"w":147,"h":126},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":99,"y":59,"w":147,"h":126},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0034.png":
+{
+	"frame": {"x":150,"y":731,"w":148,"h":126},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":98,"y":59,"w":148,"h":126},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0035.png":
+{
+	"frame": {"x":1021,"y":358,"w":147,"h":124},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":96,"y":61,"w":147,"h":124},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0036.png":
+{
+	"frame": {"x":573,"y":355,"w":147,"h":123},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":95,"y":62,"w":147,"h":123},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0037.png":
+{
+	"frame": {"x":1170,"y":358,"w":147,"h":124},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":95,"y":61,"w":147,"h":124},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0038.png":
+{
+	"frame": {"x":1319,"y":358,"w":148,"h":124},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":96,"y":61,"w":148,"h":124},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0039.png":
+{
+	"frame": {"x":1653,"y":487,"w":148,"h":125},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":97,"y":60,"w":148,"h":125},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0040.png":
+{
+	"frame": {"x":1469,"y":359,"w":149,"h":124},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":96,"y":61,"w":149,"h":124},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0041.png":
+{
+	"frame": {"x":1620,"y":361,"w":148,"h":124},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":97,"y":61,"w":148,"h":124},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0042.png":
+{
+	"frame": {"x":300,"y":732,"w":148,"h":126},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":98,"y":59,"w":148,"h":126},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0043.png":
+{
+	"frame": {"x":1770,"y":361,"w":148,"h":124},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":96,"y":61,"w":148,"h":124},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0044.png":
+{
+	"frame": {"x":1803,"y":510,"w":148,"h":125},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":98,"y":60,"w":148,"h":125},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0045.png":
+{
+	"frame": {"x":1,"y":477,"w":148,"h":124},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":96,"y":61,"w":148,"h":124},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0046.png":
+{
+	"frame": {"x":1,"y":730,"w":147,"h":126},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":98,"y":59,"w":147,"h":126},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0047.png":
+{
+	"frame": {"x":151,"y":478,"w":148,"h":124},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":96,"y":61,"w":148,"h":124},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0048.png":
+{
+	"frame": {"x":1,"y":603,"w":147,"h":125},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":96,"y":60,"w":147,"h":125},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0049.png":
+{
+	"frame": {"x":900,"y":737,"w":147,"h":127},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":100,"y":58,"w":147,"h":127},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0050.png":
+{
+	"frame": {"x":301,"y":479,"w":147,"h":124},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":96,"y":61,"w":147,"h":124},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0051.png":
+{
+	"frame": {"x":450,"y":480,"w":148,"h":124},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":95,"y":61,"w":148,"h":124},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0052.png":
+{
+	"frame": {"x":150,"y":604,"w":149,"h":125},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":98,"y":60,"w":149,"h":125},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0053.png":
+{
+	"frame": {"x":1049,"y":738,"w":147,"h":127},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":100,"y":58,"w":147,"h":127},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0054.png":
+{
+	"frame": {"x":600,"y":482,"w":150,"h":124},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":95,"y":61,"w":150,"h":124},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0055.png":
+{
+	"frame": {"x":450,"y":606,"w":148,"h":125},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":98,"y":60,"w":148,"h":125},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0056.png":
+{
+	"frame": {"x":600,"y":608,"w":148,"h":125},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":96,"y":60,"w":148,"h":125},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0057.png":
+{
+	"frame": {"x":752,"y":483,"w":148,"h":124},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":95,"y":61,"w":148,"h":124},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0058.png":
+{
+	"frame": {"x":301,"y":605,"w":147,"h":125},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":97,"y":60,"w":147,"h":125},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0059.png":
+{
+	"frame": {"x":750,"y":609,"w":149,"h":125},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":97,"y":60,"w":149,"h":125},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0060.png":
+{
+	"frame": {"x":450,"y":733,"w":148,"h":126},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":98,"y":59,"w":148,"h":126},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0061.png":
+{
+	"frame": {"x":901,"y":610,"w":148,"h":125},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":98,"y":60,"w":148,"h":125},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0062.png":
+{
+	"frame": {"x":600,"y":735,"w":148,"h":126},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":98,"y":59,"w":148,"h":126},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0063.png":
+{
+	"frame": {"x":1051,"y":611,"w":148,"h":125},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":97,"y":60,"w":148,"h":125},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0064.png":
+{
+	"frame": {"x":1201,"y":611,"w":149,"h":125},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":97,"y":60,"w":149,"h":125},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0065.png":
+{
+	"frame": {"x":1198,"y":738,"w":148,"h":127},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":99,"y":58,"w":148,"h":127},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0066.png":
+{
+	"frame": {"x":750,"y":736,"w":148,"h":126},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":98,"y":59,"w":148,"h":126},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0067.png":
+{
+	"frame": {"x":902,"y":484,"w":149,"h":124},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":96,"y":61,"w":149,"h":124},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0068.png":
+{
+	"frame": {"x":135,"y":353,"w":150,"h":122},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":94,"y":63,"w":150,"h":122},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0069.png":
+{
+	"frame": {"x":287,"y":354,"w":151,"h":122},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":96,"y":63,"w":151,"h":122},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0070.png":
+{
+	"frame": {"x":1292,"y":118,"w":155,"h":117},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":91,"y":68,"w":155,"h":117},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0071.png":
+{
+	"frame": {"x":746,"y":1,"w":159,"h":114},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":87,"y":71,"w":159,"h":114},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0072.png":
+{
+	"frame": {"x":1,"y":1,"w":161,"h":111},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":82,"y":74,"w":161,"h":111},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0073.png":
+{
+	"frame": {"x":907,"y":1,"w":150,"h":114},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":86,"y":71,"w":150,"h":114},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0074.png":
+{
+	"frame": {"x":1059,"y":1,"w":144,"h":114},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":88,"y":71,"w":144,"h":114},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0075.png":
+{
+	"frame": {"x":150,"y":116,"w":144,"h":115},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":90,"y":70,"w":144,"h":115},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0076.png":
+{
+	"frame": {"x":296,"y":116,"w":143,"h":115},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":92,"y":70,"w":143,"h":115},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0077.png":
+{
+	"frame": {"x":441,"y":117,"w":139,"h":115},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":93,"y":70,"w":139,"h":115},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0078.png":
+{
+	"frame": {"x":737,"y":117,"w":136,"h":116},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":93,"y":69,"w":136,"h":116},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0079.png":
+{
+	"frame": {"x":955,"y":236,"w":133,"h":119},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":92,"y":66,"w":133,"h":119},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0080.png":
+{
+	"frame": {"x":1913,"y":238,"w":132,"h":121},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":90,"y":64,"w":132,"h":121},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0081.png":
+{
+	"frame": {"x":440,"y":355,"w":131,"h":122},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":89,"y":63,"w":131,"h":122},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0082.png":
+{
+	"frame": {"x":1,"y":351,"w":132,"h":121},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":87,"y":64,"w":132,"h":121},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0083.png":
+{
+	"frame": {"x":1629,"y":238,"w":132,"h":120},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":86,"y":65,"w":132,"h":120},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0084.png":
+{
+	"frame": {"x":411,"y":234,"w":135,"h":118},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":84,"y":67,"w":135,"h":118},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0085.png":
+{
+	"frame": {"x":1449,"y":118,"w":135,"h":117},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":83,"y":68,"w":135,"h":117},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0086.png":
+{
+	"frame": {"x":548,"y":235,"w":135,"h":118},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":84,"y":67,"w":135,"h":118},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0087.png":
+{
+	"frame": {"x":1090,"y":237,"w":133,"h":119},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":85,"y":66,"w":133,"h":119},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0088.png":
+{
+	"frame": {"x":1225,"y":237,"w":133,"h":119},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":86,"y":66,"w":133,"h":119},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0089.png":
+{
+	"frame": {"x":1360,"y":237,"w":132,"h":119},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":86,"y":66,"w":132,"h":119},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0090.png":
+{
+	"frame": {"x":1494,"y":238,"w":133,"h":119},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":85,"y":66,"w":133,"h":119},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0091.png":
+{
+	"frame": {"x":685,"y":235,"w":133,"h":118},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":85,"y":67,"w":133,"h":118},
+	"sourceSize": {"w":256,"h":256}
+},
+"CircularSawMining_0092.png":
+{
+	"frame": {"x":820,"y":236,"w":133,"h":118},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":85,"y":67,"w":133,"h":118},
+	"sourceSize": {"w":256,"h":256}
+}},
+"animations": {
+	"mining": ["CircularSawMining_0001.png","CircularSawMining_0002.png","CircularSawMining_0003.png","CircularSawMining_0004.png","CircularSawMining_0005.png","CircularSawMining_0006.png","CircularSawMining_0007.png","CircularSawMining_0008.png","CircularSawMining_0009.png","CircularSawMining_0010.png","CircularSawMining_0011.png","CircularSawMining_0012.png","CircularSawMining_0013.png","CircularSawMining_0014.png","CircularSawMining_0015.png","CircularSawMining_0016.png","CircularSawMining_0017.png","CircularSawMining_0018.png","CircularSawMining_0019.png","CircularSawMining_0020.png","CircularSawMining_0021.png","CircularSawMining_0022.png","CircularSawMining_0023.png","CircularSawMining_0024.png","CircularSawMining_0025.png","CircularSawMining_0026.png","CircularSawMining_0027.png","CircularSawMining_0028.png","CircularSawMining_0029.png","CircularSawMining_0030.png","CircularSawMining_0031.png","CircularSawMining_0032.png","CircularSawMining_0033.png","CircularSawMining_0034.png","CircularSawMining_0035.png","CircularSawMining_0036.png","CircularSawMining_0037.png","CircularSawMining_0038.png","CircularSawMining_0039.png","CircularSawMining_0040.png","CircularSawMining_0041.png","CircularSawMining_0042.png","CircularSawMining_0043.png","CircularSawMining_0044.png","CircularSawMining_0045.png","CircularSawMining_0046.png","CircularSawMining_0047.png","CircularSawMining_0048.png","CircularSawMining_0049.png","CircularSawMining_0050.png","CircularSawMining_0051.png","CircularSawMining_0052.png","CircularSawMining_0053.png","CircularSawMining_0054.png","CircularSawMining_0055.png","CircularSawMining_0056.png","CircularSawMining_0057.png","CircularSawMining_0058.png","CircularSawMining_0059.png","CircularSawMining_0060.png","CircularSawMining_0061.png","CircularSawMining_0062.png","CircularSawMining_0063.png","CircularSawMining_0064.png","CircularSawMining_0065.png","CircularSawMining_0066.png","CircularSawMining_0067.png","CircularSawMining_0068.png","CircularSawMining_0069.png","CircularSawMining_0070.png","CircularSawMining_0071.png","CircularSawMining_0072.png","CircularSawMining_0073.png","CircularSawMining_0074.png","CircularSawMining_0075.png","CircularSawMining_0076.png","CircularSawMining_0077.png","CircularSawMining_0078.png","CircularSawMining_0079.png","CircularSawMining_0080.png","CircularSawMining_0081.png","CircularSawMining_0082.png","CircularSawMining_0083.png","CircularSawMining_0084.png","CircularSawMining_0085.png","CircularSawMining_0086.png","CircularSawMining_0087.png","CircularSawMining_0088.png","CircularSawMining_0089.png","CircularSawMining_0090.png","CircularSawMining_0091.png","CircularSawMining_0092.png"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "circularsaw.png",
+	"format": "RGBA8888",
+	"size": {"w":2046,"h":866},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:9c2a127f03a4e6dd3c14f06bda303da9:d133068b80a856810bfd13ed8ab3621a:a785c898d9b0ce63fbaff16e79ae9e27$"
+}
+}
