@@ -1,11 +1,15 @@
 export const labels = {
 	game: 'game',
-	sound: 'sound',
-	muteSlash: 'muteSlash',
 	finger:  'finger',
-	error: 'error',
 	sceneFinish: 'sceneFinish',
 	button: 'button',
+	bg: 'bg',
+	label: 'label',
+	installButton: 'installButton',
+	resourceBars: 'resourceBars',
+	moneyBar: 'moneyBar',
+	diamondBar: 'diamondBar',
+	potionBar: 'potionBar',
 };
 
 export const elementType = {

@@ -4,8 +4,8 @@ import { appTextures } from '../common/assets.js';
 import { LOADER_FILL, PRELOADER_ID } from '../common/constants.js';
 import { labels } from '../common/enums.js';
 import {
-	createSoundButton,
-	createSceneFinish,
+	createBg, createButtonInstall,
+	createFinger, createLabel, createResourceBars
 } from '../ui/index.js';
 import { eventBus } from '../utils/EventBus.js';
 import { GameManager } from './GameManager.js';
@@ -45,10 +45,13 @@ export class MainGame {
 
 		app.stage.addChild(this.gameContainer);
 		this.gameContainer.addChild(
-			createSoundButton(app),
-			createSceneFinish(app),
+			createBg(app),
+			createResourceBars(app),
+			createFinger(app),
+			createLabel(app),
+			createButtonInstall(app),
 		);
-
+		
 		this.gameManager = new GameManager(app);
 		eventBus.emit('startGame');
 
