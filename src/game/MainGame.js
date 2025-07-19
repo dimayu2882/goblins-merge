@@ -5,7 +5,7 @@ import { LOADER_FILL, PRELOADER_ID } from '../common/constants.js';
 import { labels } from '../common/enums.js';
 import {
 	createBg, createButtonInstall,
-	createFinger, createLabel, createResourceBars
+	createFinger, createGoblins, createLabel, createResourceBars, createTextMerge
 } from '../ui/index.js';
 import { eventBus } from '../utils/EventBus.js';
 import { GameManager } from './GameManager.js';
@@ -42,14 +42,18 @@ export class MainGame {
 	initializeGameElements = async () => {
 		const { app } = this;
 		await this.loadAppAssets();
+		
+		const resourceBar = createResourceBars(app);
 
 		app.stage.addChild(this.gameContainer);
 		this.gameContainer.addChild(
 			createBg(app),
-			createResourceBars(app),
+			resourceBar,
 			createFinger(app),
 			createLabel(app),
 			createButtonInstall(app),
+			createTextMerge(app),
+			createGoblins(app, resourceBar)
 		);
 		
 		this.gameManager = new GameManager(app);

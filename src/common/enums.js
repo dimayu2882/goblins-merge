@@ -10,6 +10,16 @@ export const labels = {
 	moneyBar: 'moneyBar',
 	diamondBar: 'diamondBar',
 	potionBar: 'potionBar',
+	textMerge: 'textMerge',
+	goblins: 'goblins',
+	goblinContainer: 'goblinContainer',
+	goblinOne: 'goblinOne',
+	goblinTwo: 'goblinTwo',
+	goblinThree: 'goblinThree',
+	goblinFour: 'goblinFour',
+	goblinFive: 'goblinFive',
+	ore: 'ore',
+	coin: 'coin',
 };
 
 export const elementType = {

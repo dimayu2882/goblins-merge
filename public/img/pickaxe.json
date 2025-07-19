@@ -342,7 +342,7 @@
 "meta": {
 	"app": "https://www.codeandweb.com/texturepacker",
 	"version": "1.0",
-	"image": "pickaxe.png",
+	"image": "pickaxe.webp",
 	"format": "RGBA8888",
 	"size": {"w":1014,"h":565},
 	"scale": "1",

@@ -11,6 +11,10 @@ export class GameManager {
 		
 		// Инициализация UI элементов
 		this.gameContainer = getUIElement(this.app.stage, labels.game);
+		this.resourceBar = getUIElement(this.gameContainer, labels.resourceBars);
+		this.resourceBarMoney = getUIElement(this.resourceBar, labels.moneyBar);
+		this.coinBar = getUIElement(this.resourceBarMoney, `${labels.moneyBar}Element`);
+		this.goblins = getUIElement(this.gameContainer, labels.goblins);
 		
 		// Подписка на события EventBus
 		eventBus.on('toggleSound', this.toggleSound);

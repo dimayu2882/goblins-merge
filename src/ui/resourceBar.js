@@ -19,7 +19,7 @@ export default function createResourceBar(app, label, sprite) {
 	const resourceSprite = new PixiElement({
 		type: elementType.SPRITE,
 		texture: sprite,
-		label: label,
+		label: `${label}Element`,
 		anchor: [0.5],
 	});
 	const elementResourceSprite = resourceSprite.getElement();
