@@ -13,13 +13,19 @@ export const labels = {
 	textMerge: 'textMerge',
 	goblins: 'goblins',
 	goblinContainer: 'goblinContainer',
+	goblin: 'goblin',
 	goblinOne: 'goblinOne',
 	goblinTwo: 'goblinTwo',
-	goblinThree: 'goblinThree',
-	goblinFour: 'goblinFour',
-	goblinFive: 'goblinFive',
 	ore: 'ore',
 	coin: 'coin',
+	gem: 'gem',
+	cure: 'cure',
+	shadow:  'shadow',
+	chest: 'chest',
+	chestOpen: 'chestOpen',
+	chests: 'chests',
+	mine: 'mine',
+	smoke: 'smoke',
 };
 
 export const elementType = {

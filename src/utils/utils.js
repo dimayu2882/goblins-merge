@@ -1,3 +1,4 @@
+import { gsap } from 'gsap';
 import {
 	AnimatedSprite,
 	Assets,
@@ -100,4 +101,36 @@ export function getAdaptiveSize() {
 		width = window.innerWidth;
 	}
 	return { width, height };
+}
+
+export function launchElementToTarget(el, app, targetPosition, countText, onDone) {
+	const globalStart = el.getGlobalPosition();
+	const end = targetPosition;
+	const parent = el.parent;
+	
+	app.stage.addChild(el);
+	el.position.set(globalStart.x, globalStart.y);
+	el.visible = true;
+	
+	gsap.to(el, {
+		x: end.x,
+		y: end.y,
+		duration: 0.7,
+		ease: 'power2.inOut',
+		onComplete: () => {
+			if (!el || el.destroyed || !parent || parent.destroyed) {
+				if (onDone) onDone();
+				return;
+			}
+			parent.addChild(el);
+			el.visible = false;
+			el.position.set(parent.width / 7, -10);
+			incrementScore(countText);
+			if (onDone) onDone();
+		}
+	});
+}
+
+function incrementScore(count) {
+	count.text = String(Number(count.text) + 1);
 }

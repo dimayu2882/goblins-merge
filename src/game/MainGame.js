@@ -3,10 +3,12 @@ import { Assets, Container } from 'pixi.js';
 import { appTextures } from '../common/assets.js';
 import { LOADER_FILL, PRELOADER_ID } from '../common/constants.js';
 import { labels } from '../common/enums.js';
+import createChests from '../ui/chests.js';
 import {
 	createBg, createButtonInstall,
 	createFinger, createGoblins, createLabel, createResourceBars, createTextMerge
 } from '../ui/index.js';
+import createMine from '../ui/mine.js';
 import { eventBus } from '../utils/EventBus.js';
 import { GameManager } from './GameManager.js';
 
@@ -53,7 +55,9 @@ export class MainGame {
 			createLabel(app),
 			createButtonInstall(app),
 			createTextMerge(app),
-			createGoblins(app, resourceBar)
+			createGoblins(app, resourceBar),
+			createChests(app, resourceBar),
+			createMine(app)
 		);
 		
 		this.gameManager = new GameManager(app);

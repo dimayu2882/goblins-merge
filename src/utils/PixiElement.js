@@ -37,6 +37,7 @@ export class PixiElement {
 			label: (el, label) => (el.label = label),
 			zIndex: (el, zIndex) => (el.zIndex = zIndex),
 			visible: (el, visible) => (el.visible = visible),
+			sortableChildren: (el, sortableChildren) => (el.sortableChildren = sortableChildren),
 		};
 
 		Object.entries(properties).forEach(([key, setter]) => {
@@ -51,10 +52,6 @@ export class PixiElement {
 		this.instance.flags = this.instance.flags || {};
 		this.instance.flags[flagName] = value;
 	};
-
-	show = () => (this.instance.visible = true);
-
-	hide = () => (this.instance.visible = false);
 
 	onResize = () => this.onResizeHandler();
 	

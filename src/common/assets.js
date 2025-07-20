@@ -29,7 +29,9 @@ export const allTextureKeys = {
 	shine: 'shine',
 	shineGold: 'shineGold',
 	siedgeHammer: 'siedgeHammer',
+	siedgeHammerJson: 'siedgeHammerJson',
 	smoke: 'smoke',
+	smokeJson: 'smokeJson',
 	woodenChestClosed: 'woodenChestClosed',
 	woodenChestOpen: 'woodenChestOpen',
 };
@@ -66,7 +68,9 @@ export const appTextures = {
 	[allTextureKeys.shineGold]: 'img/shineGold.webp',
 	[allTextureKeys.shineGold]: 'img/shineGold.webp',
 	[allTextureKeys.siedgeHammer]: 'img/siedgehammer.webp',
+	[allTextureKeys.siedgeHammerJson]: 'img/siedgehammer.json',
 	[allTextureKeys.smoke]: 'img/smoke.webp',
+	[allTextureKeys.smokeJson]: 'img/smoke.json',
 	[allTextureKeys.woodenChestClosed]: 'img/woodenChestClosed.webp',
 	[allTextureKeys.woodenChestOpen]: 'img/woodenChestOpen.webp',
 };

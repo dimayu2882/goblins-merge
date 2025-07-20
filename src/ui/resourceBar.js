@@ -27,7 +27,7 @@ export default function createResourceBar(app, label, sprite) {
 	const resourceScore = new PixiElement({
 		type: elementType.TEXT,
 		text: '0',
-		label: label,
+		label: `${label}Text`,
 		anchor: [0.5],
 		style: {
 			fill: 0xffffff,
