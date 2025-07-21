@@ -28,7 +28,7 @@ export default function createResourceBar(app, label, sprite) {
 		type: elementType.TEXT,
 		text: '0',
 		label: `${label}Text`,
-		anchor: [0.5],
+		anchor: [0, 0.5],
 		style: {
 			fill: 0xffffff,
 			fontFamily: 'Arial',

@@ -1,11 +1,14 @@
-import { getUIElement } from '../helpers/index.js';
+import { labels } from '../common/enums.js';
 
 class GameState {
 	constructor() {
-		this.gameState = [];
+		this.gameState = labels.gameSceneStart;
 		this.isGameOver = false;
-		this.isMuted = false;
 	}
+	
+	getGameState = () => this.gameState;
+	
+	setGameState = (gameState) => this.gameState = gameState;
 }
 
 export const gameState = new GameState();

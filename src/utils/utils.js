@@ -78,12 +78,13 @@ export class UIFactory {
 		return new Container();
 	}
 
-	static createAnimatedSprite({ texture, animationSpeed }) {
+	static createAnimatedSprite({ texture, animationSpeed, loop }) {
 		const sheet = Assets.cache.get(texture);
 		const textures = Object.values(sheet.textures);
 		const animatedSprite = new AnimatedSprite(textures);
 
 		animatedSprite.animationSpeed = animationSpeed;
+		animatedSprite.loop = loop;
 		return animatedSprite;
 	}
 }

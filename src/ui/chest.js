@@ -8,14 +8,14 @@ import { launchElementToTarget } from '../utils/utils.js';
 
 export default function createChest(
 	app, label, sprite, spriteOpen, coinPosition,
-	coinCount, gemPosition, gemCount, curePosition, cureCount
-) {
+	coinCount, gemPosition, gemCount, curePosition, cureCount) {
 	const container = new PixiElement({
 		type: elementType.CONTAINER,
 		label: labels.chest,
 		interactive: true,
 		evenMode: 'static',
-		cursor: 'pointer'
+		cursor: 'pointer',
+		visible: false,
 	});
 	const elementContainer = container.getElement();
 	

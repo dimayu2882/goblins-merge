@@ -14,6 +14,7 @@ export const labels = {
 	goblins: 'goblins',
 	goblinContainer: 'goblinContainer',
 	goblin: 'goblin',
+	upgradeGoblin: 'upgradeGoblin',
 	goblinOne: 'goblinOne',
 	goblinTwo: 'goblinTwo',
 	ore: 'ore',
@@ -26,6 +27,10 @@ export const labels = {
 	chests: 'chests',
 	mine: 'mine',
 	smoke: 'smoke',
+	
+	gameSceneStart: 'gameSceneStart',
+	gameSceneMove: 'gameSceneMove',
+	gameSceneEnd: 'gameSceneEnd',
 };
 
 export const elementType = {

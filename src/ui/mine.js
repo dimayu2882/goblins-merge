@@ -9,6 +9,7 @@ export default function createMine(app) {
 		interactive: true,
 		clickable: true,
 		cursor: 'pointer',
+		visible: false,
 	},onResizeHandler, true);
 	const elementContainer = container.getElement();
 	
@@ -24,20 +25,24 @@ export default function createMine(app) {
 		type: elementType.ANIMATED_SPRITE,
 		label: labels.smoke,
 		texture: allTextureKeys.smokeJson,
-		animationSpeed: 0.5,
+		animationSpeed: 0.6,
+		loop: false,
 		anchor: [0.5],
 		alpha: 0.4,
 		visible: false,
 	});
 	const elementSmoke = smoke.getElement();
-	elementSmoke.play();
 	
 	container.addChildren([elementMine, elementSmoke]);
 	
-	elementContainer.position.set(app.renderer.width / 2, app.renderer.height / 2);
+	function setPosition() {
+		elementContainer.position.set(app.renderer.width / 2, app.renderer.height / 2);
+	}
+	
+	setPosition();
 	
 	function onResizeHandler() {
-		elementMine.position.set(app.renderer.width / 2, app.renderer.height / 2);
+		setPosition();
 	}
 	
 	return elementContainer;
