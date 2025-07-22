@@ -104,30 +104,27 @@ export function getAdaptiveSize() {
 	return { width, height };
 }
 
-export function launchElementToTarget(el, app, targetPosition, countText, onDone) {
-	const globalStart = el.getGlobalPosition();
-	const end = targetPosition;
-	const parent = el.parent;
+export function launchElementToTarget(el, app, targetGlobalPos, countText, onDone) {
+	if (!el || !el.parent) return;
 	
-	app.stage.addChild(el);
-	el.position.set(globalStart.x, globalStart.y);
+	const parent = el.parent;
+	const localTarget = parent.toLocal(targetGlobalPos);
 	el.visible = true;
 	
-	gsap.to(el, {
-		x: end.x,
-		y: end.y,
+	gsap.to(el.position, {
+		x: localTarget.x,
+		y: localTarget.y,
 		duration: 0.7,
 		ease: 'power2.inOut',
 		onComplete: () => {
 			if (!el || el.destroyed || !parent || parent.destroyed) {
-				if (onDone) onDone();
+				onDone?.();
 				return;
 			}
-			parent.addChild(el);
 			el.visible = false;
 			el.position.set(parent.width / 7, -10);
 			incrementScore(countText);
-			if (onDone) onDone();
+			onDone?.();
 		}
 	});
 }

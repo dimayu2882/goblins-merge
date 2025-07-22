@@ -46,18 +46,18 @@ export class MainGame {
 		await this.loadAppAssets();
 		
 		const resourceBar = createResourceBars(app);
-
+		
 		app.stage.addChild(this.gameContainer);
 		this.gameContainer.addChild(
 			createBg(app),
 			resourceBar,
+			createTextMerge(app),
+			createMine(app),
 			createFinger(app),
 			createLabel(app),
 			createButtonInstall(app),
-			createTextMerge(app),
 			createGoblins(app, resourceBar),
 			createChests(app, resourceBar),
-			createMine(app)
 		);
 		
 		this.gameManager = new GameManager(app);
