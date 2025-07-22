@@ -1,11 +1,8 @@
 import { gsap } from 'gsap';
-import { Assets, Sprite } from 'pixi.js';
 
-import { allTextureKeys } from '../common/assets.js';
 import { labels } from '../common/enums.js';
 import { getByLabel, getUIElement } from '../helpers/index.js';
 import { eventBus } from '../utils/EventBus.js';
-import { launchElementToTarget } from '../utils/utils.js';
 import { gameState } from './GameState.js';
 
 export class GameManager {
@@ -31,31 +28,26 @@ export class GameManager {
 		// Добавление обработчиков
 		this.mine.on('pointerdown', () => eventBus.emit('clickMine'));
 	}
-
+	
 	initializeDraggableGoblins = () => {
-		this.goblins.children.forEach(goblin => {
-			const sprite = getUIElement(goblin, labels.goblin);
+		this.goblins.children.forEach(container => {
+			const { typeGoblin } = container;
+			const sprite = getUIElement(container, labels.goblin);
 			this.makeDraggable(sprite);
-
-			if (sprite.typeGoblin === labels.goblinTwo) sprite.stop();
+			if (typeGoblin === labels.goblinTwo) sprite.stop();
 		});
 	};
 	
 	makeDraggable = (sprite) => {
 		const goblinsContainer = this.goblins;
-		
 		let isDragging = false;
 		let offset = { x: 0, y: 0 };
 		let originalPosition = { x: sprite.x, y: sprite.y };
 		
-		const onPointerDown = (event) => {
+		sprite.on('pointerdown', event => {
 			isDragging = true;
-			
-			offset = {
-				x: event.global.x - sprite.x,
-				y: event.global.y - sprite.y
-			};
-			
+			offset.x = event.global.x - sprite.x;
+			offset.y = event.global.y - sprite.y;
 			originalPosition = { x: sprite.x, y: sprite.y };
 			
 			const parent = sprite.parent;
@@ -63,55 +55,50 @@ export class GameManager {
 			
 			this.toggleShadows(null, false);
 			this.toggleShadows(sprite, true);
-			
 			sprite.stop();
-		};
+		});
 		
-		const onPointerMove = (event) => {
+		sprite.on('pointermove', event => {
 			if (!isDragging) return;
-			
-			const newX = event.global.x - offset.x;
-			const newY = event.global.y - offset.y;
-			
-			sprite.position.set(newX, newY);
-		};
+			sprite.position.set(event.global.x - offset.x, event.global.y - offset.y);
+		});
 		
-		const onPointerUp = () => {
+		const stopDragging = () => {
 			isDragging = false;
 			this.handleDrop(sprite, originalPosition);
 		};
 		
-		sprite.on('pointerdown', onPointerDown);
-		sprite.on('pointermove', onPointerMove);
-		sprite.on('pointerup', onPointerUp);
-		sprite.on('pointerupoutside', onPointerUp);
+		sprite.on('pointerup', stopDragging);
+		sprite.on('pointerupoutside', stopDragging);
 	};
-
+	
 	handleDrop = (sprite, originalPosition) => {
-		const goblinSprites = this.getSlots(sprite.typeGoblin);
+		const type = sprite.parent.typeGoblin;
+		const goblinSprites = this.getSlots(type);
 		const closest = this.findClosestSameType(sprite, goblinSprites);
-
+		
 		if (closest) {
 			const targetPos = closest.getGlobalPosition();
 			const targetGoblin = goblinSprites.find(g => g === closest);
 			const animatingGoblins = goblinSprites.filter(g => g !== closest);
-
+			
 			if (gameState.getGameState() === labels.gameSceneMove) {
 				this.animateGoblinsToPoint({
 					goblins: animatingGoblins,
 					targetPos,
 					draggedGoblin: sprite,
 					originalPosition,
-					onEachComplete: goblin => {
-						this.mergeGoblins(goblin, targetGoblin);
-					}
+					onEachComplete: goblin => this.mergeGoblins(goblin, targetGoblin)
 				});
 			} else {
-				const targetPos = this.app.stage.toGlobal({ x: this.app.renderer.width / 2, y: this.app.renderer.height / 2 });
-
+				const center = this.app.stage.toGlobal({
+					x: this.app.renderer.width / 2,
+					y: this.app.renderer.height / 2
+				});
+				
 				this.animateGoblinsToPoint({
 					goblins: goblinSprites,
-					targetPos,
+					targetPos: center,
 					draggedGoblin: sprite,
 					originalPosition,
 					onAllComplete: () => this.activeScene()
@@ -126,36 +113,21 @@ export class GameManager {
 				ease: 'power2.out'
 			});
 		}
-
+		
 		this.toggleShadows(null, false);
 	};
-
-	animateGoblinsToPoint = (
-		{
-			goblins,
-			targetPos,
-			draggedGoblin,
-			originalPosition,
-			onEachComplete,
-			onAllComplete
-		}) => {
-		const masterTimeline = gsap.timeline({
-			onComplete: () => {
-				onAllComplete?.();
-			}
-		});
-
-		goblins.forEach((goblin, i) => {
+	
+	animateGoblinsToPoint = ({ goblins, targetPos, draggedGoblin, originalPosition, onEachComplete, onAllComplete }) => {
+		const timeline = gsap.timeline({ onComplete: () => onAllComplete?.() });
+		
+		goblins.forEach((goblin) => {
 			const parent = goblin.parent;
 			const localTarget = parent.toLocal(targetPos);
-
-			const originalPos = goblin === draggedGoblin
-				? originalPosition
-				: { x: goblin.position.x, y: goblin.position.y };
-
-			const goblinTimeline = gsap.timeline();
-
-			goblinTimeline.to(goblin.position, {
+			const original = goblin === draggedGoblin ? originalPosition : goblin.position.clone();
+			
+			const tl = gsap.timeline();
+			
+			tl.to(goblin.position, {
 				x: localTarget.x,
 				y: localTarget.y,
 				duration: 0.35,
@@ -166,55 +138,41 @@ export class GameManager {
 					onEachComplete?.(goblin);
 				}
 			});
-
-			goblinTimeline.to(goblin, {
-				alpha: 0,
-				duration: 0.3,
-				ease: 'power1.out'
-			})
-				.to(goblin.position, {
-					x: originalPos.x,
-					y: originalPos.y,
-					duration: 0.3,
-					ease: 'power2.inOut'
-				});
-
-			masterTimeline.add(goblinTimeline, i * 0.05);
+			
+			tl.to(goblin, { alpha: 0, duration: 0.3, ease: 'power1.out' });
+			tl.to(goblin.position, { x: original.x, y: original.y, duration: 0.3 });
+			
+			timeline.add(tl, 0);
 		});
 	};
-
+	
 	mergeGoblins = (goblin, targetGoblin) => {
 		goblin.stop();
 		goblin.parent.visible = false;
-
-		const upgradeSprite = targetGoblin.parent.children.find(child => child.label === labels.upgradeGoblin);
+		
+		const upgradeSprite = targetGoblin.parent.children.find(ch => ch.label === labels.upgradeGoblin);
 		upgradeSprite.visible = true;
 		targetGoblin.visible = false;
 		upgradeSprite.play();
 	};
-
+	
 	findClosestSameType = (sprite, candidates, maxDist = 150) => {
-		const draggedPos = sprite.getGlobalPosition();
-		let closest = null;
-		let minDist = maxDist;
+		const pos = sprite.getGlobalPosition();
+		let closest = null, min = maxDist;
 		for (const other of candidates) {
 			if (other === sprite) continue;
-			const pos = other.getGlobalPosition();
-			const dist = Math.hypot(draggedPos.x - pos.x, draggedPos.y - pos.y);
-			if (dist < minDist) {
-				minDist = dist;
-				closest = other;
-			}
+			const d = Math.hypot(pos.x - other.getGlobalPosition().x, pos.y - other.getGlobalPosition().y);
+			if (d < min) { min = d; closest = other; }
 		}
 		return closest;
 	};
-
+	
 	getSlots = typeGoblin => {
 		return this.goblins.children
-			.map(goblin => getUIElement(goblin, labels.goblin))
-			.filter(slot => slot && slot.typeGoblin === typeGoblin);
+			.filter(container => container.typeGoblin === typeGoblin)
+			.map(container => getUIElement(container, labels.goblin));
 	};
-
+	
 	toggleShadows = (sprite, visible = true) => {
 		this.filteredGoblinsByType(sprite)
 			.map(g => getUIElement(g, labels.shadow))
@@ -223,54 +181,18 @@ export class GameManager {
 				gsap.to(shadow.scale, {
 					x: visible ? 1 : 0,
 					y: visible ? 1 : 0,
-					duration: 0.1,
-					ease: 'power1.inOut'
+					duration: 0.1
 				});
 			});
 	};
-
+	
 	filteredGoblinsByType = sprite => {
-		return this.goblins.children.filter(goblin => {
-			const goblinSprite = getUIElement(goblin, labels.goblin);
-			return (
-				goblinSprite &&
-				(!sprite ||
-					(goblinSprite !== sprite &&
-						goblinSprite.typeGoblin === sprite.typeGoblin))
-			);
+		return this.goblins.children.filter(container => {
+			if (!sprite) return true;
+			return container !== sprite.parent && container.typeGoblin === sprite.parent.typeGoblin;
 		});
 	};
-
-	produceCoinsFromAllGoblins = () => {
-		this.goblins.children.forEach(goblinContainer => {
-			if (!goblinContainer.visible) return;
-
-			const goblinSprite = getUIElement(goblinContainer, labels.goblin);
-			if (!goblinSprite) return;
-
-			const count = 3;
-			const delayStep = 0.1;
-
-			for (let i = 0; i < count; i++) {
-				gsap.delayedCall(i * delayStep, () => {
-					const coinTexture = Assets.cache.get(allTextureKeys.coin);
-					const coin = new Sprite(coinTexture);
-					coin.anchor.set(0.5);
-
-					// Добавляем монету в контейнер гоблина
-					goblinContainer.addChild(coin);
-
-					launchElementToTarget(
-						coin,
-						this.app,
-						this.coin.getGlobalPosition(),
-						this.coinCount
-					);
-				});
-			}
-		});
-	};
-
+	
 	activeMine = () => {
 		this.smokeMine.visible = true;
 		this.smokeMine.gotoAndPlay(0);
@@ -291,31 +213,31 @@ export class GameManager {
 
 		this.checkActiveElements();
 	};
-
+	
 	activeScene = () => {
 		gsap.to(this.textMerge, {
 			alpha: 0,
 			duration: 0.4,
 			ease: 'power1.out'
 		});
-
+		
 		this.mine.visible = true;
 		this.mine.alpha = 0;
 		this.mine.scale.set(0);
-
+		
 		gsap.to(this.mine.scale, {
 			x: 1,
 			y: 1,
 			duration: 0.4,
 			ease: 'back.out(2)'
 		});
-
+		
 		gsap.to(this.mine, {
 			alpha: 1,
 			duration: 0.4,
 			ease: 'power1.out'
 		});
-
+		
 		gsap.to(this.mine.position, {
 			x: this.mine.position.x + 5,
 			duration: 0.05,
@@ -324,21 +246,21 @@ export class GameManager {
 			ease: 'sine.inOut',
 			onComplete: () => {
 				gsap.set(this.mine.position, { x: this.mine.position.x - 5 });
-
+				
 				this.showAllElements({
 					container: this.goblins,
-					onEachStart: (goblin) => {
-						const sprite = getUIElement(goblin, labels.goblin);
+					onEachStart: (container) => {
+						const sprite = getUIElement(container, labels.goblin);
 						sprite.alpha = 0;
 					},
-					afterTween: (goblin) => {
-						const sprite = getUIElement(goblin, labels.goblin);
+					afterTween: (container) => {
+						const sprite = getUIElement(container, labels.goblin);
 						sprite.play();
 						sprite.alpha = 1;
 						gameState.setGameState(labels.gameSceneMove);
 					}
 				});
-
+				
 				this.showAllElements({ container: this.chests });
 			}
 		});
@@ -373,27 +295,20 @@ export class GameManager {
 			});
 		});
 	};
-
+	
 	checkActiveElements = () => {
-		const disabledChest = this.chests.children.find((chest) => {
-			const closed = getUIElement(chest, labels.chest);
-			return !closed.visible;
-		});
-
+		const disabledChest = this.chests.children.find(chest => !getUIElement(chest, labels.chest)?.visible);
+		
 		if (disabledChest) {
-			const closed = getUIElement(disabledChest, labels.chest);
-			const open = getUIElement(disabledChest, labels.chestOpen);
-
+			getUIElement(disabledChest, labels.chest).visible = true;
+			getUIElement(disabledChest, labels.chestOpen).alpha = 1;
 			disabledChest.visible = true;
-			closed.visible = true;
-			open.alpha = 1;
 		} else {
-			const disabledGoblin = this.goblins.children.find((goblin) => !goblin.visible);
-
-			if (disabledGoblin) {
-				disabledGoblin.visible = true;
-				disabledGoblin.alpha = 1;
-				const goblin = getUIElement(disabledGoblin, labels.goblin);
+			const container = this.goblins.children.find(c => !c.visible);
+			if (container) {
+				container.visible = true;
+				container.alpha = 1;
+				const goblin = getUIElement(container, labels.goblin);
 				goblin.alpha = 1;
 				goblin.play();
 			}
