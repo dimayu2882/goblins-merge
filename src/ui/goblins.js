@@ -13,7 +13,7 @@ export default function createGoblins(app, resourceBar) {
 	const elementGoblins = goblins.getElement();
 	
 	const coin = getByLabel(resourceBar, `${labels.moneyBar}Element`);
-	const coinPosition = coin.getGlobalPosition();
+	const getCoinPosition = () => coin.getGlobalPosition();
 	
 	const coinCount = getByLabel(resourceBar, `${labels.moneyBar}Text`);
 	
@@ -25,7 +25,7 @@ export default function createGoblins(app, resourceBar) {
 		allTextureKeys.oreOne,
 		false,
 		labels.goblinOne,
-		coinPosition,
+		getCoinPosition,
 		coinCount
 	);
 	
@@ -37,7 +37,7 @@ export default function createGoblins(app, resourceBar) {
 		allTextureKeys.oreTwo,
 		false,
 		labels.goblinOne,
-		coinPosition,
+		getCoinPosition,
 		coinCount
 	);
 	
@@ -49,7 +49,7 @@ export default function createGoblins(app, resourceBar) {
 		allTextureKeys.oreTwo,
 		true,
 		labels.goblinOne,
-		coinPosition,
+		getCoinPosition,
 		coinCount
 	);
 	
@@ -61,7 +61,7 @@ export default function createGoblins(app, resourceBar) {
 		allTextureKeys.oreOne,
 		true,
 		labels.goblinTwo,
-		coinPosition,
+		getCoinPosition,
 		coinCount
 	);
 	
@@ -73,7 +73,7 @@ export default function createGoblins(app, resourceBar) {
 		allTextureKeys.oreFour,
 		false,
 		labels.goblinTwo,
-		coinPosition,
+		getCoinPosition,
 		coinCount
 	);
 	
@@ -85,7 +85,7 @@ export default function createGoblins(app, resourceBar) {
 		allTextureKeys.oreFour,
 		true,
 		labels.goblinTwo,
-		coinPosition,
+		getCoinPosition,
 		coinCount
 	);
 	

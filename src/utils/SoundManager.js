@@ -4,22 +4,18 @@ import { audioAssets } from '../common/assets.js';
 class SoundManager {
 	constructor() {
 		this.sounds = {
-			tap: new Howl({
-				src: [audioAssets.tap],
+			build: new Howl({
+				src: [audioAssets.buildTwo],
 				volume: 0.2,
 			}),
-			win: new Howl({
-				src: [audioAssets.win],
-				volume: 0.2,
-			}),
-			wrong: new Howl({
-				src: [audioAssets.wrong],
+			swoosh: new Howl({
+				src: [audioAssets.swoosh],
 				volume: 0.2,
 			}),
 			bg: new Howl({
-				src: [audioAssets.bg],
+				src: [audioAssets.music],
 				loop: true,
-				volume: 0.2,
+				volume: 0.1,
 			}),
 		};
 

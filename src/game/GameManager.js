@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { labels } from '../common/enums.js';
 import { getByLabel, getUIElement } from '../helpers/index.js';
 import { eventBus } from '../utils/EventBus.js';
+import { soundManager } from '../utils/SoundManager.js';
 import { gameState } from './GameState.js';
 
 export class GameManager {
@@ -17,10 +18,10 @@ export class GameManager {
 		this.smokeMine = getUIElement(this.mine, labels.smoke);
 		this.resourceBar = getUIElement(this.gameContainer, labels.resourceBars);
 		this.coin = getByLabel(this.resourceBar, `${labels.moneyBar}Element`);
-		this.coinCount = getByLabel(this.resourceBar, `${labels.moneyBar}Text`);
 		this.textMerge = getUIElement(this.gameContainer, labels.textMerge);
 		
 		this.initializeDraggableGoblins();
+		soundManager.play('bg');
 		
 		// Подписка на события EventBus
 		eventBus.on('clickMine', this.activeMine);
@@ -194,6 +195,7 @@ export class GameManager {
 		
 		targetContainer.typeGoblin = labels.upgradeGoblin;
 		upgradeSprite.typeGoblin = labels.upgradeGoblin;
+		soundManager.play('swoosh');
 		this.initializeDraggableGoblins();
 	};
 	
@@ -264,7 +266,6 @@ export class GameManager {
 				ease: 'power1.inOut'
 			}
 		);
-		
 		this.checkActiveElements();
 	};
 	
@@ -300,6 +301,7 @@ export class GameManager {
 			ease: 'sine.inOut',
 			onComplete: () => {
 				gsap.set(this.mine.position, { x: this.mine.position.x - 5 });
+				soundManager.play('build');
 				
 				this.showAllElements({
 					container: this.goblins,

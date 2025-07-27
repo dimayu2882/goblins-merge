@@ -12,15 +12,15 @@ export default function createChests(app, resourceBar) {
 	const elementChests = chests.getElement();
 	
 	const coin = getByLabel(resourceBar, `${labels.moneyBar}Element`);
-	const coinPosition = coin.getGlobalPosition();
+	const getCoinPosition = () => coin.getGlobalPosition();
 	const coinCount = getByLabel(resourceBar, `${labels.moneyBar}Text`);
 	
 	const gem = getByLabel(resourceBar, `${labels.diamondBar}Element`);
-	const gemPosition = gem.getGlobalPosition();
+	const getGemPosition = () => gem.getGlobalPosition();
 	const gemCount = getByLabel(resourceBar, `${labels.diamondBar}Text`);
 	
 	const cure = getByLabel(resourceBar, `${labels.potionBar}Element`);
-	const curePosition = cure.getGlobalPosition();
+	const getCurePosition = () => cure.getGlobalPosition();
 	const cureCount = getByLabel(resourceBar, `${labels.potionBar}Text`);
 	
 	const chestOne = createChest(
@@ -28,11 +28,11 @@ export default function createChests(app, resourceBar) {
 		labels.chest,
 		allTextureKeys.woodenChestClosed,
 		allTextureKeys.woodenChestOpen,
-		coinPosition,
+		getCoinPosition,
 		coinCount,
-		gemPosition,
+		getGemPosition,
 		gemCount,
-		curePosition,
+		getCurePosition,
 		cureCount
 	);
 	
@@ -41,11 +41,11 @@ export default function createChests(app, resourceBar) {
 		labels.chest,
 		allTextureKeys.ironChestClosed,
 		allTextureKeys.ironChestOpen,
-		coinPosition,
+		getCoinPosition,
 		coinCount,
-		gemPosition,
+		getGemPosition,
 		gemCount,
-		curePosition,
+		getCurePosition,
 		cureCount
 	);
 	
@@ -54,11 +54,11 @@ export default function createChests(app, resourceBar) {
 		labels.chest,
 		allTextureKeys.goldenChestClosed,
 		allTextureKeys.goldenChestOpen,
-		coinPosition,
+		getCoinPosition,
 		coinCount,
-		gemPosition,
+		getGemPosition,
 		gemCount,
-		curePosition,
+		getCurePosition,
 		cureCount
 	);
 	

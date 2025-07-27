@@ -104,11 +104,12 @@ export function getAdaptiveSize() {
 	return { width, height };
 }
 
-export function launchElementToTarget(el, app, targetGlobalPos, countText, onDone) {
+export function launchElementToTarget(el, app, getCoinPosition, countText, onDone) {
 	if (!el || !el.parent) return;
 	
 	const parent = el.parent;
-	const localTarget = parent.toLocal(targetGlobalPos);
+	const targetPosition = getCoinPosition();
+	const localTarget = parent.toLocal(targetPosition);
 	el.visible = true;
 	
 	gsap.to(el.position, {
