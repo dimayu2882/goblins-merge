@@ -13,6 +13,7 @@ export default function createGoblin(app, label, goblinSprite, visible, oreSprit
 	});
 	const elementContainer = container.getElement();
 	elementContainer.typeGoblin = typeGoblin;
+	elementContainer.typeGoblinDefault = typeGoblin;
 	
 	const goblin = new PixiElement({
 		type: elementType.ANIMATED_SPRITE,
@@ -30,7 +31,7 @@ export default function createGoblin(app, label, goblinSprite, visible, oreSprit
 	
 	const upgradeGoblin = new PixiElement({
 		type: elementType.ANIMATED_SPRITE,
-		label: labels.upgradeGoblin,
+		label: labels.goblin,
 		texture: allTextureKeys.circularSawJson,
 		animationSpeed: 0.5,
 		loop: true,
@@ -113,8 +114,10 @@ export default function createGoblin(app, label, goblinSprite, visible, oreSprit
 	});
 
 	// Coin launch trigger (без привязки к кадру)
+	let stopped = false;
+	
 	elementGoblin.startCoinFlow = (countPerTick = 2, tickDelay = 0.1) => {
-		let stopped = false;
+		stopped = false;
 		
 		const loop = () => {
 			if (stopped) return;
@@ -137,14 +140,12 @@ export default function createGoblin(app, label, goblinSprite, visible, oreSprit
 		};
 		
 		loop();
-		
-		// функция для остановки потока
-		elementGoblin.stopCoinFlow = () => {
-			stopped = true;
-		};
 	};
 	
+	elementGoblin.stopCoinFlow = () => stopped = true;
+	
 	elementUpgradeGoblin.startCoinFlow = elementGoblin.startCoinFlow;
+	elementUpgradeGoblin.stopCoinFlow = elementGoblin.stopCoinFlow;
 	
 	elementUpgradeGoblin.onFrameChange = currentFrame => {
 		if (currentFrame === 5) {

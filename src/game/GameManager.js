@@ -8,7 +8,7 @@ import { gameState } from './GameState.js';
 export class GameManager {
 	constructor(app) {
 		this.app = app;
-
+		
 		// Инициализация UI элементов
 		this.gameContainer = getUIElement(this.app.stage, labels.game);
 		this.goblins = getUIElement(this.gameContainer, labels.goblins);
@@ -19,27 +19,24 @@ export class GameManager {
 		this.coin = getByLabel(this.resourceBar, `${labels.moneyBar}Element`);
 		this.coinCount = getByLabel(this.resourceBar, `${labels.moneyBar}Text`);
 		this.textMerge = getUIElement(this.gameContainer, labels.textMerge);
-
+		
 		this.initializeDraggableGoblins();
-
+		
 		// Подписка на события EventBus
 		eventBus.on('clickMine', this.activeMine);
-
+		
 		// Добавление обработчиков
 		this.mine.on('pointerdown', () => eventBus.emit('clickMine'));
 	}
 	
 	initializeDraggableGoblins = () => {
 		this.goblins.children.forEach(container => {
-			const { typeGoblin } = container;
-			const sprite = getUIElement(container, labels.goblin);
+			const sprite = container.children.find(child => child.label === labels.goblin && child.visible);
 			this.makeDraggable(sprite);
-			if (typeGoblin === labels.goblinTwo) sprite.stop();
 		});
 	};
 	
 	makeDraggable = (sprite) => {
-		const goblinsContainer = this.goblins;
 		let isDragging = false;
 		let offset = { x: 0, y: 0 };
 		let originalPosition = { x: sprite.x, y: sprite.y };
@@ -51,11 +48,12 @@ export class GameManager {
 			originalPosition = { x: sprite.x, y: sprite.y };
 			
 			const parent = sprite.parent;
-			goblinsContainer.setChildIndex(parent, goblinsContainer.children.length - 1);
+			this.goblins.setChildIndex(parent, this.goblins.children.length - 1);
 			
 			this.toggleShadows(null, false);
 			this.toggleShadows(sprite, true);
 			sprite.stop();
+			if (sprite.stopCoinFlow) sprite.stopCoinFlow();
 		});
 		
 		sprite.on('pointermove', event => {
@@ -88,7 +86,10 @@ export class GameManager {
 					targetPos,
 					draggedGoblin: sprite,
 					originalPosition,
-					onEachComplete: goblin => this.mergeGoblins(goblin, targetGoblin)
+					targetGoblin,
+					onEachComplete: goblin => {
+						this.mergeGoblins(goblin, targetGoblin);
+					}
 				});
 			} else {
 				const center = this.app.stage.toGlobal({
@@ -101,6 +102,7 @@ export class GameManager {
 					targetPos: center,
 					draggedGoblin: sprite,
 					originalPosition,
+					targetGoblin,
 					onAllComplete: () => this.activeScene()
 				});
 			}
@@ -117,8 +119,28 @@ export class GameManager {
 		this.toggleShadows(null, false);
 	};
 	
-	animateGoblinsToPoint = ({ goblins, targetPos, draggedGoblin, originalPosition, onEachComplete, onAllComplete }) => {
+	animateGoblinsToPoint = (
+		{
+			goblins,
+			targetPos,
+			draggedGoblin,
+			originalPosition,
+			targetGoblin,
+			onEachComplete,
+			onAllComplete
+		}
+	) => {
 		const timeline = gsap.timeline({ onComplete: () => onAllComplete?.() });
+		
+		const uniqueParents = new Set(
+			goblins
+				.filter(g => g !== targetGoblin)
+				.map(g => g.parent)
+		);
+		uniqueParents.forEach(parent => parent.isHidden = true);
+		
+		// Флаг для отслеживания первого слияния
+		let mergeExecuted = false;
 		
 		goblins.forEach((goblin) => {
 			const parent = goblin.parent;
@@ -135,7 +157,10 @@ export class GameManager {
 				onStart: () => goblin.play?.(),
 				onComplete: () => {
 					goblin.stop();
-					onEachComplete?.(goblin);
+					if (!mergeExecuted && onEachComplete) {
+						mergeExecuted = true;
+						onEachComplete(goblin);
+					}
 				}
 			});
 			
@@ -148,12 +173,28 @@ export class GameManager {
 	
 	mergeGoblins = (goblin, targetGoblin) => {
 		goblin.stop();
-		goblin.parent.visible = false;
+		goblin.parent.isHidden = true;
+		goblin.stopCoinFlow?.();
 		
-		const upgradeSprite = targetGoblin.parent.children.find(ch => ch.label === labels.upgradeGoblin);
-		upgradeSprite.visible = true;
-		targetGoblin.visible = false;
-		upgradeSprite.play();
+		const targetContainer = targetGoblin.parent;
+		const goblinSprite = targetContainer.children.find(ch => ch.label === labels.goblin && ch.typeGoblin !== labels.upgradeGoblin);
+		const upgradeSprite = targetContainer.children.find(ch => ch.typeGoblin === labels.upgradeGoblin);
+		
+		if (goblinSprite) {
+			goblinSprite.stop();
+			goblinSprite.visible = false;
+		}
+		
+		if (upgradeSprite) {
+			upgradeSprite.visible = true;
+			upgradeSprite.play();
+			upgradeSprite.gotoAndPlay(0);
+			this.makeDraggable(upgradeSprite);
+		}
+		
+		targetContainer.typeGoblin = labels.upgradeGoblin;
+		upgradeSprite.typeGoblin = labels.upgradeGoblin;
+		this.initializeDraggableGoblins();
 	};
 	
 	findClosestSameType = (sprite, candidates, maxDist = 150) => {
@@ -162,7 +203,10 @@ export class GameManager {
 		for (const other of candidates) {
 			if (other === sprite) continue;
 			const d = Math.hypot(pos.x - other.getGlobalPosition().x, pos.y - other.getGlobalPosition().y);
-			if (d < min) { min = d; closest = other; }
+			if (d < min) {
+				min = d;
+				closest = other;
+			}
 		}
 		return closest;
 	};
@@ -170,7 +214,12 @@ export class GameManager {
 	getSlots = typeGoblin => {
 		return this.goblins.children
 			.filter(container => container.typeGoblin === typeGoblin)
-			.map(container => getUIElement(container, labels.goblin));
+			.map(container => {
+				return container.children.find(child =>
+					(child.label === labels.goblin && child.visible) ||
+					(child.typeGoblin === labels.upgradeGoblin && child.visible)
+				);
+			});
 	};
 	
 	toggleShadows = (sprite, visible = true) => {
@@ -189,7 +238,12 @@ export class GameManager {
 	filteredGoblinsByType = sprite => {
 		return this.goblins.children.filter(container => {
 			if (!sprite) return true;
-			return container !== sprite.parent && container.typeGoblin === sprite.parent.typeGoblin;
+			const isSameType = container !== sprite.parent && container.typeGoblin === sprite.parent.typeGoblin;
+			const hasVisibleGoblin = container.children.some(child =>
+				(child.label === labels.goblin || child.typeGoblin === labels.upgradeGoblin) &&
+				child.alpha && child.visible
+			);
+			return isSameType && hasVisibleGoblin;
 		});
 	};
 	
@@ -197,7 +251,7 @@ export class GameManager {
 		this.smokeMine.visible = true;
 		this.smokeMine.gotoAndPlay(0);
 		this.smokeMine.onComplete = () => this.smokeMine.visible = false;
-
+		
 		gsap.fromTo(
 			this.mine.scale,
 			{ x: 1, y: 1 },
@@ -210,7 +264,7 @@ export class GameManager {
 				ease: 'power1.inOut'
 			}
 		);
-
+		
 		this.checkActiveElements();
 	};
 	
@@ -265,27 +319,30 @@ export class GameManager {
 			}
 		});
 	};
-
+	
 	showAllElements = (
-		{ container,
-			onEachStart = () => {},
-			afterTween = () => {}
+		{
+			container,
+			onEachStart = () => {
+			},
+			afterTween = () => {
+			}
 		}) => {
 		const center = {
 			x: this.app.renderer.width / 2,
 			y: this.app.renderer.height / 2
 		};
-
+		
 		const centerLocal = container.toLocal(center);
-
+		
 		container.children.forEach((element) => {
 			element.visible = true;
-
+			
 			const target = { x: element.x, y: element.y };
 			element.position.set(centerLocal.x, centerLocal.y);
-
+			
 			onEachStart(element);
-
+			
 			gsap.to(element.position, {
 				x: target.x,
 				y: target.y,
@@ -297,21 +354,21 @@ export class GameManager {
 	};
 	
 	checkActiveElements = () => {
-		const disabledChest = this.chests.children.find(chest => !getUIElement(chest, labels.chest)?.visible);
+		const chest = this.chests.children.find(c => !getUIElement(c, labels.chest)?.visible);
 		
-		if (disabledChest) {
-			getUIElement(disabledChest, labels.chest).visible = true;
-			getUIElement(disabledChest, labels.chestOpen).alpha = 1;
-			disabledChest.visible = true;
-		} else {
-			const container = this.goblins.children.find(c => !c.visible);
-			if (container) {
-				container.visible = true;
-				container.alpha = 1;
-				const goblin = getUIElement(container, labels.goblin);
-				goblin.alpha = 1;
-				goblin.play();
-			}
+		if (chest) {
+			getUIElement(chest, labels.chest).visible = true;
+			getUIElement(chest, labels.chestOpen).alpha = 1;
+			chest.visible = true;
+			return;
+		}
+		
+		const container = this.goblins.children.find(c => c.isHidden);
+		if (container) {
+			const goblin = getUIElement(container, labels.goblin);
+			Object.assign(container, { visible: true, alpha: 1, isHidden: false });
+			Object.assign(goblin, { visible: true, alpha: 1 });
+			goblin.play();
 		}
 	};
 }
