@@ -27,7 +27,6 @@ export const labels = {
 	chests: 'chests',
 	mine: 'mine',
 	smoke: 'smoke',
-	
 	gameSceneStart: 'gameSceneStart',
 	gameSceneMove: 'gameSceneMove',
 	gameSceneEnd: 'gameSceneEnd',

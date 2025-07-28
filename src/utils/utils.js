@@ -96,7 +96,7 @@ export function getAdaptiveSize() {
 
 	if (ww >= wh) {
 		width = ww;
-		height = width / 1.5;
+		height = width / 1.8;
 	} else {
 		height = window.innerHeight;
 		width = window.innerWidth;

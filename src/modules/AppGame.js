@@ -3,6 +3,7 @@ import { Application } from 'pixi.js';
 import { CONTAINER_ID } from '../common/constants.js';
 import { MainGame } from '../game/MainGame.js';
 import { initResizeManager, subscribeToResize, } from '../utils/resizeManager.js';
+import { ScaleManager } from '../utils/ScaleManager.js';
 import { getAdaptiveSize, setAppInstance } from '../utils/utils.js';
 
 export class AppGame {
@@ -10,6 +11,7 @@ export class AppGame {
 		this.app = null;
 		this.container = document.getElementById(CONTAINER_ID);
 		this.game = new MainGame(this.app);
+		this.scaleManager = null;
 	}
 
 	async initGame() {
@@ -30,9 +32,11 @@ export class AppGame {
 
 		this.game = new MainGame(this.app);
 		setAppInstance(this.app);
-
-		await this.game.initializeGameElements();
-
+		
+		const gameContainer = await this.game.initializeGameElements();
+		
+		this.scaleManager = new ScaleManager(gameContainer);
+		
 		subscribeToResize(this.app);
 		this.app.onResize = () => {
 			const { width, height } = getAdaptiveSize();

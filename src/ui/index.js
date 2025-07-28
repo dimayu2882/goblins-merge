@@ -7,6 +7,7 @@ import createResourceBar from './resourceBar.js';
 import createTextMerge from './textMerge.js';
 import createGoblins from './goblins.js';
 import createGoblin from './goblin.js';
+import createSceneFinish  from './sceneFinish.js';
 
 export {
 	createBg,
@@ -18,4 +19,5 @@ export {
 	createTextMerge,
 	createGoblins,
 	createGoblin,
+	createSceneFinish
 };

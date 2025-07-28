@@ -6,7 +6,7 @@ import { labels } from '../common/enums.js';
 import createChests from '../ui/chests.js';
 import {
 	createBg, createButtonInstall,
-	createFinger, createGoblins, createLabel, createResourceBars, createTextMerge
+	createFinger, createGoblins, createLabel, createResourceBars, createSceneFinish, createTextMerge
 } from '../ui/index.js';
 import createMine from '../ui/mine.js';
 import { eventBus } from '../utils/EventBus.js';
@@ -58,6 +58,7 @@ export class MainGame {
 			createButtonInstall(app),
 			createGoblins(app, resourceBar),
 			createChests(app, resourceBar),
+			createSceneFinish(app)
 		);
 		
 		this.gameManager = new GameManager(app);
