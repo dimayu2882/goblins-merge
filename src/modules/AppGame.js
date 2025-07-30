@@ -19,8 +19,8 @@ export class AppGame {
 		
 		this.app = new Application();
 		await this.app.init({
-			width,
-			height,
+			width: 1920,
+			height: 1080,
 			backgroundAlpha: 0,
 			antialias: true,
 			autoDensity: true,
@@ -32,16 +32,16 @@ export class AppGame {
 
 		this.game = new MainGame(this.app);
 		setAppInstance(this.app);
+    
+    const gameContainer = await this.game.initializeGameElements();
+    
+    this.scaleManager = new ScaleManager(gameContainer, this.app, 1920, 1080);
 		
-		const gameContainer = await this.game.initializeGameElements();
-		
-		this.scaleManager = new ScaleManager(gameContainer);
-		
-		subscribeToResize(this.app);
-		this.app.onResize = () => {
-			const { width, height } = getAdaptiveSize();
-			this.app.renderer.resize(width, height);
-		};
-		initResizeManager();
+		// subscribeToResize(this.app);
+		// this.app.onResize = () => {
+		// 	const { width, height } = getAdaptiveSize();
+		// 	this.app.renderer.resize(width, height);
+		// };
+		// initResizeManager();
 	}
 }

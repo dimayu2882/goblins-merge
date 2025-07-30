@@ -89,18 +89,33 @@ export class UIFactory {
 	}
 }
 
+const BASE_WIDTH = 1920;
+const BASE_HEIGHT = 1080;
+
 export function getAdaptiveSize() {
 	const ww = window.innerWidth;
 	const wh = window.innerHeight;
+	
 	let width, height;
-
+	
 	if (ww >= wh) {
-		width = ww;
-		height = width / 1.8;
+		// Ландшафтная: масштаб по минимальной стороне
+		const scale = Math.min(ww / BASE_WIDTH, wh / BASE_HEIGHT);
+		width = BASE_WIDTH * scale;
+		height = BASE_HEIGHT * scale;
 	} else {
-		height = window.innerHeight;
-		width = window.innerWidth;
+		// Портретная: ширина = 100%, высота = ширина * 2
+		width = ww;
+		height = width * 2;
+		
+		// Если высота не помещается — масштабируем всё
+		if (height > wh) {
+			const scale = wh / height;
+			width *= scale;
+			height *= scale;
+		}
 	}
+	
 	return { width, height };
 }
 
