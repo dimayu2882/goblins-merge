@@ -16,6 +16,7 @@ export default function createChest(
 		evenMode: 'static',
 		cursor: 'pointer',
 		visible: false,
+		scale: [2]
 	});
 	const elementContainer = container.getElement();
 	

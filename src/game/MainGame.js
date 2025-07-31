@@ -54,10 +54,10 @@ export class MainGame {
 			createTextMerge(app),
 			createMine(app),
 			createFinger(app),
-			createLabel(app),
-			createButtonInstall(app),
 			createGoblins(app, resourceBar),
 			createChests(app, resourceBar),
+			createButtonInstall(app),
+			createLabel(app),
 			createSceneFinish(app)
 		);
 		

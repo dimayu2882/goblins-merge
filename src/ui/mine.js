@@ -18,6 +18,7 @@ export default function createMine(app) {
 		texture: allTextureKeys.mine,
 		label: 'sprite',
 		anchor: [0.5],
+		scale: [2]
 	});
 	const elementMine = mine.getElement();
 	
@@ -30,6 +31,7 @@ export default function createMine(app) {
 		anchor: [0.5],
 		alpha: 0.4,
 		visible: false,
+		scale: [2]
 	});
 	const elementSmoke = smoke.getElement();
 	

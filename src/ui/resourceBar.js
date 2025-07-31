@@ -5,6 +5,7 @@ export default function createResourceBar(app, label, sprite) {
 	const resourceBar = new PixiElement({
 		type: elementType.CONTAINER,
 		label: label,
+		scale: [2]
 	});
 	const elementResourceBar = resourceBar.getElement();
 	

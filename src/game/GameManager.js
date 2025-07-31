@@ -61,7 +61,8 @@ export class GameManager {
 
     sprite.on("pointermove", (event) => {
       if (!isDragging) return;
-      sprite.position.set(event.global.x - offset.x, event.global.y - offset.y);
+      const local = sprite.parent.toLocal(event.data.global);
+      sprite.position.set(local.x, local.y);
     });
 
     const stopDragging = () => {
@@ -239,8 +240,8 @@ export class GameManager {
       .filter(Boolean)
       .forEach((shadow) => {
         gsap.to(shadow.scale, {
-          x: visible ? 1 : 0,
-          y: visible ? 1 : 0,
+          x: visible ? 2 : 0,
+          y: visible ? 2 : 0,
           duration: 0.1,
         });
       });

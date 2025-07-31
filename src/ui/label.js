@@ -10,6 +10,7 @@ export default function createLabel(app) {
 		interactive: false,
 		anchor: [1],
 		position: [app.renderer.width, app.renderer.height],
+		scale: [2]
 	}, onResizeHandler, true);
 	const elementLabel = label.getElement();
 	

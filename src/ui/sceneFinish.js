@@ -40,7 +40,7 @@ export default function createSceneFinish(app) {
 	
 	const elementBg = new Graphics();
 
-	elementBg.fill({ color: 0xCCCCCC, alpha: 0.5 });
+	elementBg.fill({ color: 0xcecece, alpha: 0.7 });
 	elementBg.rect(0, 0, app.renderer.width, app.renderer.height);
 	elementBg.fill();
 	elementBg.eventMode = 'static';

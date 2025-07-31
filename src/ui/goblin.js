@@ -1,4 +1,5 @@
 import { gsap } from 'gsap';
+import { Matrix } from 'pixi.js';
 
 import { allTextureKeys } from '../common/assets.js';
 import { elementType, labels } from '../common/enums.js';
@@ -24,7 +25,8 @@ export default function createGoblin(app, label, goblinSprite, visible, oreSprit
 		anchor: [0.5],
 		interactive: true,
 		evenMode: 'static',
-		cursor: 'grab'
+		cursor: 'grab',
+		scale: [2]
 	});
 	const elementGoblin = goblin.getElement();
 	elementGoblin.gotoAndPlay(Math.floor(Math.random() * 30));
@@ -39,7 +41,8 @@ export default function createGoblin(app, label, goblinSprite, visible, oreSprit
 		interactive: true,
 		evenMode: 'static',
 		cursor: 'grab',
-		visible: false
+		visible: false,
+		scale: [2]
 	});
 	const elementUpgradeGoblin = upgradeGoblin.getElement();
 	elementUpgradeGoblin.typeGoblin = labels.upgradeGoblin;
@@ -48,7 +51,8 @@ export default function createGoblin(app, label, goblinSprite, visible, oreSprit
 	const core = new PixiElement({
 		type: elementType.SPRITE,
 		texture: oreSprite,
-		label: labels.ore
+		label: labels.ore,
+		scale: [2],
 	});
 	const elementCore = core.getElement();
 	
@@ -57,7 +61,8 @@ export default function createGoblin(app, label, goblinSprite, visible, oreSprit
 		texture: allTextureKeys.coin,
 		label: labels.coin,
 		visible: false,
-		anchor: [0.5]
+		anchor: [0.5],
+		scale: [2]
 	});
 	const elementCoin = coin.getElement();
 	
@@ -79,9 +84,8 @@ export default function createGoblin(app, label, goblinSprite, visible, oreSprit
 	]);
 	
 	if (left) {
-		elementGoblin.scale.set(-1, 1);
-		elementGoblin.pivot.x = elementGoblin.width / 2;
-		elementUpgradeGoblin.scale.set(-1, 1);
+		elementGoblin.scale.set(-2, 2);
+		elementUpgradeGoblin.scale.set(-2, 2);
 		elementUpgradeGoblin.pivot.x = elementGoblin.width / 2;
 		elementCore.position.set(-elementGoblin.width / 5, -10);
 		elementShadow.position.set(elementGoblin.x + elementGoblin.width / 2, elementGoblin.y);

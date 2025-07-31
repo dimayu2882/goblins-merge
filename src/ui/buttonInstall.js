@@ -13,6 +13,7 @@ export default function createButtonInstall(app) {
 		clickable: true,
 		cursor: 'pointer',
 		anchor: [0.5],
+		scale: [2]
 	}, onResizeHandler, true);
 	const elementButtonInstall = buttonInstall.getElement();
 	
@@ -23,8 +24,8 @@ export default function createButtonInstall(app) {
 	
 	gsap.to(elementButtonInstall.scale, {
 		duration: 0.6,
-		x: 1.05,
-		y: 1.05,
+		x: 1.8,
+		y: 1.8,
 		ease: 'power1.inOut',
 		yoyo: true,
 		repeat: -1
