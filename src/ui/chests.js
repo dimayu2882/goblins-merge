@@ -66,8 +66,8 @@ export default function createChests(app, resourceBar) {
 	setPosition();
 	
 	function setPosition() {
-		chestOne.position.set(app.renderer.width / 2, app.renderer.height / 5);
-		chestTwo.position.set(app.renderer.width / 8, app.renderer.height / 3);
+		chestOne.position.set(app.renderer.width / 2, app.renderer.height / 4);
+		chestTwo.position.set(app.renderer.width / 5, app.renderer.height / 1.7);
 		chestTree.position.set(app.renderer.width / 2, app.renderer.height / 1.1);
 	}
 	

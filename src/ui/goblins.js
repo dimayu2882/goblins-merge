@@ -95,10 +95,10 @@ export default function createGoblins(app, resourceBar) {
 	function setPosition() {
 		goblinOne.position.set(app.renderer.width / 1.5, app.renderer.height / 5);
 		goblinTwo.position.set(app.renderer.width / 1.3, app.renderer.height / 1.5);
-		goblinTree.position.set(goblinOne.width / 2, app.renderer.height / 1.5);
-		goblinFour.position.set(goblinFour.width / 2, app.renderer.height / 2.5);
+		goblinTree.position.set(goblinOne.width / 1.5, app.renderer.height / 1.5);
+		goblinFour.position.set(goblinFour.width / 1.5, app.renderer.height / 2.5);
 		goblinFive.position.set(app.renderer.width / 1.3, app.renderer.height / 2.2);
-		goblinSix.position.set(app.renderer.width / 4, app.renderer.height / 5);
+		goblinSix.position.set(app.renderer.width / 4, app.renderer.height / 6);
 	}
 	
 	function onResizeHandler() {

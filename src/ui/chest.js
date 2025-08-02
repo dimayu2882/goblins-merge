@@ -1,13 +1,12 @@
 import { gsap } from 'gsap';
-import { Sprite, Texture } from 'pixi.js';
+import { isMobile, Sprite, Texture } from 'pixi.js';
 
 import { allTextureKeys } from '../common/assets.js';
 import { PixiElement } from '../utils/PixiElement.js';
 import { elementType, labels } from '../common/enums.js';
 import { launchElementToTarget } from '../utils/utils.js';
 
-export default function createChest(
-	app, label, sprite, spriteOpen, coinPosition,
+export default function createChest(app, label, sprite, spriteOpen, coinPosition,
 	coinCount, gemPosition, gemCount, curePosition, cureCount) {
 	const container = new PixiElement({
 		type: elementType.CONTAINER,
@@ -16,8 +15,7 @@ export default function createChest(
 		evenMode: 'static',
 		cursor: 'pointer',
 		visible: false,
-		scale: [2]
-	});
+	}, onResizeHandler, true);
 	const elementContainer = container.getElement();
 	
 	const chest = new PixiElement({
@@ -134,6 +132,19 @@ export default function createChest(
 				elementChestOpen.visible = false;
 			}
 		});
+	}
+	
+	function setPosition() {
+		if (app.renderer.width < 630 || isMobile.phone ) {
+			elementContainer.scale.set(0.5);
+		} else {
+			elementContainer.scale.set(1);
+		}
+	}
+	setPosition();
+	
+	function onResizeHandler() {
+		setPosition();
 	}
 	
 	return elementContainer;

@@ -1,5 +1,5 @@
 import { gsap } from 'gsap';
-import { Matrix } from 'pixi.js';
+import { isMobile } from 'pixi.js';
 
 import { allTextureKeys } from '../common/assets.js';
 import { elementType, labels } from '../common/enums.js';
@@ -11,7 +11,7 @@ export default function createGoblin(app, label, goblinSprite, visible, oreSprit
 		type: elementType.CONTAINER,
 		label: labels.goblinContainer,
 		visible
-	});
+	}, onResizeHandler, true);
 	const elementContainer = container.getElement();
 	elementContainer.typeGoblin = typeGoblin;
 	elementContainer.typeGoblinDefault = typeGoblin;
@@ -26,7 +26,6 @@ export default function createGoblin(app, label, goblinSprite, visible, oreSprit
 		interactive: true,
 		evenMode: 'static',
 		cursor: 'grab',
-		scale: [2]
 	});
 	const elementGoblin = goblin.getElement();
 	elementGoblin.gotoAndPlay(Math.floor(Math.random() * 30));
@@ -42,7 +41,6 @@ export default function createGoblin(app, label, goblinSprite, visible, oreSprit
 		evenMode: 'static',
 		cursor: 'grab',
 		visible: false,
-		scale: [2]
 	});
 	const elementUpgradeGoblin = upgradeGoblin.getElement();
 	elementUpgradeGoblin.typeGoblin = labels.upgradeGoblin;
@@ -52,7 +50,6 @@ export default function createGoblin(app, label, goblinSprite, visible, oreSprit
 		type: elementType.SPRITE,
 		texture: oreSprite,
 		label: labels.ore,
-		scale: [2],
 	});
 	const elementCore = core.getElement();
 	
@@ -62,7 +59,6 @@ export default function createGoblin(app, label, goblinSprite, visible, oreSprit
 		label: labels.coin,
 		visible: false,
 		anchor: [0.5],
-		scale: [2]
 	});
 	const elementCoin = coin.getElement();
 	
@@ -84,11 +80,10 @@ export default function createGoblin(app, label, goblinSprite, visible, oreSprit
 	]);
 	
 	if (left) {
-		elementGoblin.scale.set(-2, 2);
-		elementUpgradeGoblin.scale.set(-2, 2);
-		elementUpgradeGoblin.pivot.x = elementGoblin.width / 2;
-		elementCore.position.set(-elementGoblin.width / 5, -10);
-		elementShadow.position.set(elementGoblin.x + elementGoblin.width / 2, elementGoblin.y);
+		elementGoblin.scale.set(-1, 1);
+		elementUpgradeGoblin.scale.set(-1, 1);
+		elementCore.position.set(-elementGoblin.width / 1.5, -10);
+		elementShadow.position.set(elementGoblin.x , elementGoblin.y);
 		elementCoin.position.set(elementGoblin.width / 7, -10);
 	} else {
 		elementCore.position.set(elementGoblin.width / 7, -10);
@@ -156,6 +151,19 @@ export default function createGoblin(app, label, goblinSprite, visible, oreSprit
 			elementUpgradeGoblin.startCoinFlow();
 		}
 	};
+	
+	function setPosition() {
+		if (app.renderer.width < 630 || isMobile.phone ) {
+			elementContainer.scale.set(0.5);
+		} else {
+			elementContainer.scale.set(1);
+		}
+	}
+	setPosition();
+	
+	function onResizeHandler() {
+		setPosition();
+	}
 	
 	return elementContainer;
 }

@@ -19,6 +19,8 @@ export class GameManager {
     this.resourceBar = getUIElement(this.gameContainer, labels.resourceBars);
     this.coin = getByLabel(this.resourceBar, `${labels.moneyBar}Element`);
     this.textMerge = getUIElement(this.gameContainer, labels.textMerge);
+    
+    this.baseScale = this.mine.scale.clone();
 
     this.initializeDraggableGoblins();
     // soundManager.play('bg');
@@ -240,8 +242,8 @@ export class GameManager {
       .filter(Boolean)
       .forEach((shadow) => {
         gsap.to(shadow.scale, {
-          x: visible ? 2 : 0,
-          y: visible ? 2 : 0,
+          x: visible ? 1 : 0,
+          y: visible ? 1 : 0,
           duration: 0.1,
         });
       });
@@ -267,14 +269,17 @@ export class GameManager {
   activeMine = () => {
     this.smokeMine.visible = true;
     this.smokeMine.gotoAndPlay(0);
-    this.smokeMine.onComplete = () => (this.smokeMine.visible = false);
+    this.smokeMine.onComplete = () => this.smokeMine.visible = false;
+    
+    const baseX = this.baseScale.x;
+    const baseY = this.baseScale.y;
 
     gsap.fromTo(
       this.mine.scale,
-      { x: 1, y: 1 },
+      { x: baseX, y: baseY },
       {
-        x: 1.1,
-        y: 0.9,
+        x: baseX + 0.1,
+        y: baseY + 0.1,
         duration: 0.1,
         yoyo: true,
         repeat: 2,
@@ -293,14 +298,17 @@ export class GameManager {
 
     this.mine.visible = true;
     this.mine.alpha = 0;
-    this.mine.scale.set(0);
-
-    gsap.to(this.mine.scale, {
-      x: 1,
-      y: 1,
-      duration: 0.4,
-      ease: "back.out(2)",
-    });
+    
+    gsap.fromTo(
+      this.mine.scale,
+      { x: 0, y: 0 },
+      {
+        x: this.mine.scale.x,
+        y: this.mine.scale.y,
+        duration: 0.4,
+        ease: "back.out(2)",
+      },
+    );
 
     gsap.to(this.mine, {
       alpha: 1,
