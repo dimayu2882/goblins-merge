@@ -21,6 +21,7 @@ export class GameManager {
 		this.resourceBar = getUIElement(this.gameContainer, labels.resourceBars);
 		this.coin = getByLabel(this.resourceBar, `${labels.moneyBar}Element`);
 		this.textMerge = getUIElement(this.gameContainer, labels.textMerge);
+		this.sceneFinish = getUIElement(this.gameContainer, labels.sceneFinish);
 		
 		this.baseScale = this.mine.scale.clone();
 		this.fingerContainer = null;
@@ -29,17 +30,24 @@ export class GameManager {
 		this.isFingerActive = false;
 		
 		this.initializeDraggableGoblins();
-		// soundManager.play('bg');
+		soundManager.play('bg');
 		
 		// Добавление обработчиков
 		eventBus.on('clickMine', this.activeMine);
 		this.mine.on('pointerdown', () => eventBus.emit('clickMine'));
 		this.playFingerAnimation(true, null, null, labels.goblinOne);
 		eventBus.once('chestAnimationComplete', () => {
-			console.log('chestAnimationComplete');
 			this.playFingerAnimation(true, null, null, labels.goblinTwo);
 		});
 		this.app.stage.on('pointerdown', () => this.stopFingerAnimation());
+		
+		
+		setTimeout(() => {
+			if (gameState.getGameState() === labels.gameSceneStart) {
+				this.showFinishScene();
+				console.log(gameState.getGameState(), 'two');
+			}
+		}, 5000);
 	}
 	
 	initializeDraggableGoblins = () => {
@@ -120,7 +128,10 @@ export class GameManager {
 					draggedGoblin: sprite,
 					originalPosition,
 					targetGoblin,
-					onAllComplete: () => this.activeScene()
+					onAllComplete: () => {
+						this.activeScene();
+						gameState.setGameState(labels.gameSceneMove);
+					}
 				});
 			}
 		} else {
@@ -148,9 +159,7 @@ export class GameManager {
 		}) => {
 		const timeline = gsap.timeline({ onComplete: () => onAllComplete?.() });
 		
-		const uniqueParents = new Set(
-			goblins.filter((g) => g !== targetGoblin).map((g) => g.parent)
-		);
+		const uniqueParents = new Set(goblins.filter((g) => g !== targetGoblin).map((g) => g.parent));
 		uniqueParents.forEach((parent) => (parent.isHidden = true));
 		
 		// Флаг для отслеживания первого слияния
@@ -159,8 +168,7 @@ export class GameManager {
 		goblins.forEach((goblin) => {
 			const parent = goblin.parent;
 			const localTarget = parent.toLocal(targetPos);
-			const original =
-				goblin === draggedGoblin ? originalPosition : goblin.position.clone();
+			const original = goblin === draggedGoblin ? originalPosition : goblin.position.clone();
 			
 			const tl = gsap.timeline();
 			
@@ -339,6 +347,11 @@ export class GameManager {
 						sprite.play();
 						sprite.alpha = 1;
 						gameState.setGameState(labels.gameSceneMove);
+						
+						setTimeout(() => {
+							console.log(gameState.getGameState(), 'one');
+								this.showFinishScene();
+						}, 20000);
 					}
 				});
 				
@@ -401,6 +414,7 @@ export class GameManager {
 		
 		const createAndAddFinger = (x, y) => {
 			this.fingerContainer = createFinger(this.app);
+			if (!this.fingerContainer) return null;
 			this.fingerContainer.visible = true;
 			this.app.stage.addChild(this.fingerContainer);
 			this.fingerContainer.position.set(x, y);
@@ -408,6 +422,7 @@ export class GameManager {
 		};
 		
 		const animateFingerScale = (target) => {
+			if (!target) return;
 			gsap.to(target.scale, {
 				x: 0.85,
 				y: 0.85,
@@ -426,10 +441,11 @@ export class GameManager {
 				const target = goblin.children.find(c => c.visible && c.label === 'goblin');
 				return target ? target.getGlobalPosition() : null;
 			});
-			
 			if (!from || !to) return;
 			
 			const originalGoblinSprite = visibleGoblins[0].children.find(c => c.visible && c.label === 'goblin');
+			if (!originalGoblinSprite) return;
+			
 			this.cloneGoblin = new AnimatedSprite(originalGoblinSprite.textures);
 			Object.assign(this.cloneGoblin, {
 				visible: false,
@@ -447,22 +463,34 @@ export class GameManager {
 			const loop = () => {
 				if (!this.isFingerActive) return;
 				
-				Object.assign(this.fingerContainer, { x: from.x, y: from.y, alpha: 1 });
-				Object.assign(this.cloneGoblin, { x: from.x, y: from.y, alpha: 0.6, visible: false });
+				if (this.fingerContainer) {
+					Object.assign(this.fingerContainer, { x: from.x, y: from.y, alpha: 1 });
+				}
+				if (this.cloneGoblin && !this.cloneGoblin.destroyed) {
+					Object.assign(this.cloneGoblin, { x: from.x, y: from.y, alpha: 0.6, visible: false });
+				}
 				
-				gsap.set(fingerActive, { alpha: 0 });
-				gsap.set(finger, { alpha: 1 });
+				if (fingerActive) gsap.set(fingerActive, { alpha: 0 });
+				if (finger) gsap.set(finger, { alpha: 1 });
 				
-				gsap.to(fingerActive, {
-					alpha: 1,
-					duration: 0.3,
-					delay: 0.3,
-					onComplete: () => this.cloneGoblin.visible = true
-				});
+				if (fingerActive) {
+					gsap.to(fingerActive, {
+						alpha: 1,
+						duration: 0.3,
+						delay: 0.3,
+						onComplete: () => {
+							if (this.cloneGoblin && !this.cloneGoblin.destroyed) {
+								this.cloneGoblin.visible = true;
+							}
+						}
+					});
+				}
 				
-				gsap.to(finger, { alpha: 0, duration: 0.3, delay: 0.3 });
+				if (finger) {
+					gsap.to(finger, { alpha: 0, duration: 0.3, delay: 0.3 });
+				}
 				
-				gsap.to([this.fingerContainer, this.cloneGoblin], {
+				gsap.to([this.fingerContainer, this.cloneGoblin].filter(Boolean), {
 					x: to.x,
 					y: to.y,
 					duration: 0.8,
@@ -470,16 +498,23 @@ export class GameManager {
 					ease: 'power1.inOut',
 					onComplete: () => {
 						if (!this.isFingerActive) return;
-						gsap.to([this.fingerContainer, this.cloneGoblin], {
+						gsap.to([this.fingerContainer, this.cloneGoblin].filter(Boolean), {
 							alpha: 0,
 							duration: 0.3,
 							delay: 0.3,
 							onComplete: () => {
 								if (!this.isFingerActive) return;
-								gsap.set(fingerActive, { alpha: 0 });
-								gsap.set(finger, { alpha: 1 });
-								gsap.set(this.fingerContainer, { x: from.x, y: from.y });
-								gsap.set(this.cloneGoblin, { x: from.x, y: from.y, alpha: 0.6, visible: false });
+								
+								if (fingerActive) gsap.set(fingerActive, { alpha: 0 });
+								if (finger) gsap.set(finger, { alpha: 1 });
+								
+								if (this.fingerContainer && !this.fingerContainer.destroyed) {
+									gsap.set(this.fingerContainer, { x: from.x, y: from.y });
+								}
+								if (this.cloneGoblin && !this.cloneGoblin.destroyed) {
+									gsap.set(this.cloneGoblin, { x: from.x, y: from.y, alpha: 0.6, visible: false });
+								}
+								
 								this.fingerLoopDelay = gsap.delayedCall(1.0, loop);
 							}
 						});
@@ -533,4 +568,11 @@ export class GameManager {
 			if (targets.includes(target)) tween.kill();
 		});
 	};
+	
+	showFinishScene = () => {
+		this.stopFingerAnimation();
+		this.sceneFinish.alpha = 0;
+		this.sceneFinish.visible = true;
+		gsap.to(this.sceneFinish, { alpha: 1 });
+	}
 }
