@@ -45,7 +45,6 @@ export class GameManager {
 		setTimeout(() => {
 			if (gameState.getGameState() === labels.gameSceneStart) {
 				this.showFinishScene();
-				console.log(gameState.getGameState(), 'two');
 			}
 		}, 5000);
 	}
