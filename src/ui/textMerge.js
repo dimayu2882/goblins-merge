@@ -1,5 +1,4 @@
 import { PixiElement } from '../utils/PixiElement.js';
-import { allTextureKeys } from '../common/assets.js';
 import { elementType, labels } from '../common/enums.js';
 
 export default function createTextMerge(app) {

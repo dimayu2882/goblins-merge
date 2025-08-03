@@ -27,14 +27,13 @@ export default defineConfig({
 				drop_console: true,
 				drop_debugger: true,
 				passes: 2,
-				dead_code: true,
 				pure_funcs: ['console.log', 'console.info', 'console.debug'],
-				unsafe: true,
-				unsafe_comps: true,
+				unsafe: false,
+				unsafe_comps: false,
 			},
 			mangle: {
-				toplevel: true,
-				eval: true,
+				toplevel: false,
+				eval: false,
 				reserved: ['__PIXI_APP__'],
 			},
 			format: {
