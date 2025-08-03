@@ -1,6 +1,8 @@
 export const labels = {
 	game: 'game',
+	fingerContainer:  'fingerContainer',
 	finger:  'finger',
+	fingerActive:  'fingerActive',
 	sceneFinish: 'sceneFinish',
 	button: 'button',
 	bg: 'bg',

@@ -1,5 +1,6 @@
 import { gsap } from 'gsap';
-import { BlurFilter, Graphics } from 'pixi.js';
+import { BlurFilter, Graphics, isMobile } from 'pixi.js';
+
 import { PixiElement } from '../utils/PixiElement.js';
 import { allTextureKeys } from '../common/assets.js';
 import { elementType, labels } from '../common/enums.js';
@@ -29,15 +30,6 @@ export default function createSceneFinish(app) {
 	});
 	const elementButton = button.getElement();
 	
-	gsap.to(elementButton.scale, {
-		x: 1.1,
-		y: 1.1,
-		duration: 0.5,
-		yoyo: true,
-		repeat: -1,
-		ease: 'sine.inOut',
-	});
-	
 	const elementBg = new Graphics();
 
 	elementBg.fill({ color: 0xcecece, alpha: 0.7 });
@@ -46,9 +38,17 @@ export default function createSceneFinish(app) {
 	elementBg.eventMode = 'static';
 
 	const blurFilter = new BlurFilter();
-	blurFilter.strength = 4;
-
+	blurFilter.strength = 0; // начальное значение
+	
 	elementBg.filters = [blurFilter];
+	
+	gsap.to(blurFilter, {
+		strength: 15,
+		duration: 0.5,
+		yoyo: true,
+		repeat: 1,
+		ease: 'power1.inOut'
+	});
 	
 	scene.addChildren([ elementBg, elementLogo, elementButton]);
 	
@@ -67,6 +67,32 @@ export default function createSceneFinish(app) {
 		elementBg.rect(0, 0, app.renderer.width, app.renderer.height);
 		elementBg.fill();
 		elementBg.eventMode = 'static';
+		
+		if (app.renderer.width < 630 || isMobile.phone ) {
+			elementLogo.scale.set(0.5);
+			elementButton.scale.set(0.5);
+			
+			gsap.to(elementButton.scale, {
+				x: 0.6,
+				y: 0.6,
+				duration: 0.5,
+				yoyo: true,
+				repeat: -1,
+				ease: 'sine.inOut',
+			});
+		} else {
+			elementLogo.scale.set(1);
+			elementButton.scale.set(1);
+			
+			gsap.to(elementButton.scale, {
+				x: 1.1,
+				y: 1.1,
+				duration: 0.5,
+				yoyo: true,
+				repeat: -1,
+				ease: 'sine.inOut',
+			});
+		}
 	}
 	
 	function onResizeHandler() {

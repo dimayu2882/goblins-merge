@@ -1,3 +1,5 @@
+import { isMobile } from 'pixi.js';
+
 import { PixiElement } from '../utils/PixiElement.js';
 import { elementType } from '../common/enums.js';
 
@@ -5,8 +7,7 @@ export default function createResourceBar(app, label, sprite) {
 	const resourceBar = new PixiElement({
 		type: elementType.CONTAINER,
 		label: label,
-		scale: [2]
-	});
+	}, onResizeHandler, true);
 	const elementResourceBar = resourceBar.getElement();
 	
 	const resourceBarBg = new PixiElement({
@@ -42,8 +43,21 @@ export default function createResourceBar(app, label, sprite) {
 	
 	resourceBar.addChildren([elementResourceBarBg, elementResourceSprite, elementResourceScore]);
 	
-	elementResourceSprite.position.set(elementResourceSprite.width / 2 + 5, elementResourceBarBg.height / 2);
-	elementResourceScore.position.set(elementResourceSprite.width + 30, elementResourceBarBg.height / 2);
+	function setPosition() {
+		elementResourceSprite.position.set(elementResourceSprite.width / 2 + 5, elementResourceBarBg.height / 2);
+		elementResourceScore.position.set(elementResourceSprite.width + 30, elementResourceBarBg.height / 2);
+		
+		if (app.renderer.width < 630 || isMobile.phone ) {
+			elementResourceBar.scale.set(0.5);
+		} else {
+			elementResourceBar.scale.set(1);
+		}
+	}
+	setPosition();
+	
+	function onResizeHandler() {
+		setPosition();
+	}
 	
 	return elementResourceBar;
 }

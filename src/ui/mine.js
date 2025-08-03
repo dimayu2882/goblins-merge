@@ -1,3 +1,5 @@
+import { isMobile } from 'pixi.js';
+
 import { PixiElement } from '../utils/PixiElement.js';
 import { allTextureKeys } from '../common/assets.js';
 import { elementType, labels } from '../common/enums.js';
@@ -18,7 +20,6 @@ export default function createMine(app) {
 		texture: allTextureKeys.mine,
 		label: 'sprite',
 		anchor: [0.5],
-		scale: [2]
 	});
 	const elementMine = mine.getElement();
 	
@@ -31,7 +32,6 @@ export default function createMine(app) {
 		anchor: [0.5],
 		alpha: 0.4,
 		visible: false,
-		scale: [2]
 	});
 	const elementSmoke = smoke.getElement();
 	
@@ -39,6 +39,12 @@ export default function createMine(app) {
 	
 	function setPosition() {
 		elementContainer.position.set(app.renderer.width / 2, app.renderer.height / 2);
+		
+		if (app.renderer.width < 630 || isMobile.phone ) {
+			elementContainer.scale.set(0.5);
+		} else {
+			elementContainer.scale.set(1);
+		}
 	}
 	
 	setPosition();
