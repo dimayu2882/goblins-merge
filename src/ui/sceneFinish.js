@@ -38,9 +38,17 @@ export default function createSceneFinish(app) {
 	elementBg.eventMode = 'static';
 
 	const blurFilter = new BlurFilter();
-	blurFilter.strength = 4;
-
+	blurFilter.strength = 0; // начальное значение
+	
 	elementBg.filters = [blurFilter];
+	
+	gsap.to(blurFilter, {
+		strength: 15,
+		duration: 0.5,
+		yoyo: true,
+		repeat: 1,
+		ease: 'power1.inOut'
+	});
 	
 	scene.addChildren([ elementBg, elementLogo, elementButton]);
 	

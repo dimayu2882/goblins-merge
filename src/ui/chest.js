@@ -2,6 +2,7 @@ import { gsap } from 'gsap';
 import { isMobile, Sprite, Texture } from 'pixi.js';
 
 import { allTextureKeys } from '../common/assets.js';
+import { eventBus } from '../utils/EventBus.js';
 import { PixiElement } from '../utils/PixiElement.js';
 import { elementType, labels } from '../common/enums.js';
 import { launchElementToTarget } from '../utils/utils.js';
@@ -99,7 +100,8 @@ export default function createChest(app, label, sprite, spriteOpen, coinPosition
 			curePosition,
 			cureCount,
 			() => {
-				hideChest()
+				hideChest();
+				eventBus.emit('chestAnimationComplete');
 			}
 		);
 	});
