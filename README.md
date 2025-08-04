@@ -35,3 +35,6 @@ node generate-base64-assets.js
 ```shell
 npm run lint && vite build && node build-playable.js
 ```
+
+### 🎉 Demo Playable
+https://goblins-merge.vercel.app/
