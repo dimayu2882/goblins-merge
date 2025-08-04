@@ -37,7 +37,9 @@ export class GameManager {
 		this.mine.on('pointerdown', () => eventBus.emit('clickMine'));
 		this.playFingerAnimation(true, null, null, labels.goblinOne);
 		eventBus.once('chestAnimationComplete', () => {
-			this.playFingerAnimation(true, null, null, labels.goblinTwo);
+			if (gameState.getGameState() !== labels.gameSceneFinish) {
+				this.playFingerAnimation(true, null, null, labels.goblinTwo);
+			}
 		});
 		this.app.stage.on('pointerdown', () => this.stopFingerAnimation());
 		
@@ -382,7 +384,7 @@ export class GameManager {
 				ease: 'back.out(2)',
 				onComplete: () => {
 					afterTween(element);
-					this.playFingerAnimation(null, true, null);
+					if (gameState.getGameState() !== labels.gameSceneFinish) this.playFingerAnimation(null, true, null);
 				}
 			});
 		});
@@ -446,12 +448,13 @@ export class GameManager {
 			if (!originalGoblinSprite) return;
 			
 			this.cloneGoblin = new AnimatedSprite(originalGoblinSprite.textures);
+			const scale = visibleGoblins[0].scale.x;
 			Object.assign(this.cloneGoblin, {
 				visible: false,
-				label: 'cloneGoblin'
+				label: 'cloneGoblin',
+				scale: { x: scale, y: scale }
 			});
 			this.cloneGoblin.anchor.set(originalGoblinSprite.anchor.x, originalGoblinSprite.anchor.y);
-			this.cloneGoblin.scale.set(originalGoblinSprite.scale.x, originalGoblinSprite.scale.y);
 			this.cloneGoblin.rotation = originalGoblinSprite.rotation;
 			this.cloneGoblin.position.set(from.x, from.y);
 			this.app.stage.addChild(this.cloneGoblin);
@@ -573,5 +576,7 @@ export class GameManager {
 		this.sceneFinish.alpha = 0;
 		this.sceneFinish.visible = true;
 		gsap.to(this.sceneFinish, { alpha: 1 });
+		
+		gameState.setGameState(labels.gameSceneFinish);
 	}
 }

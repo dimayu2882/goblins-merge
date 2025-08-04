@@ -31,7 +31,7 @@ export const labels = {
 	smoke: 'smoke',
 	gameSceneStart: 'gameSceneStart',
 	gameSceneMove: 'gameSceneMove',
-	gameSceneEnd: 'gameSceneEnd',
+	gameSceneFinish: 'gameSceneFinish',
 };
 
 export const elementType = {
