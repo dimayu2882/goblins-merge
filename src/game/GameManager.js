@@ -38,7 +38,7 @@ export class GameManager {
 		this.playFingerAnimation(true, null, null, labels.goblinOne);
 		eventBus.once('chestAnimationComplete', () => {
 			if (gameState.getGameState() !== labels.gameSceneFinish) {
-				this.playFingerAnimation(true, null, null, labels.goblinTwo);
+				this.playFingerAnimation(true, null, null, labels.goblinOne);
 			}
 		});
 		this.app.stage.on('pointerdown', () => this.stopFingerAnimation());
